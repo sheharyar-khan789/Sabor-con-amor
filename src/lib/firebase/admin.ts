@@ -18,7 +18,12 @@ function resolveAdminOptions() {
   const projectId = process.env.FIREBASE_ADMIN_PROJECT_ID || process.env.NEXT_PUBLIC_FIREBASE_PROJECT_ID;
   const clientEmail = process.env.FIREBASE_ADMIN_CLIENT_EMAIL;
   // Env files store the key with literal "\n" sequences; restore real newlines.
-  const privateKey = process.env.FIREBASE_ADMIN_PRIVATE_KEY?.replace(/\\n/g, "\n");
+  // Hosting dashboards (e.g. Vercel) keep the surrounding quotes if they were
+  // pasted along with the key, so those are removed too.
+  const privateKey = process.env.FIREBASE_ADMIN_PRIVATE_KEY?.trim()
+    .replace(/^"([\s\S]*)"$/, "$1")
+    .replace(/\\r/g, "")
+    .replace(/\\n/g, "\n");
 
   if (projectId && clientEmail && privateKey) {
     return { credential: cert({ projectId, clientEmail, privateKey }), projectId };

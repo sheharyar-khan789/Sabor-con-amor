@@ -8,6 +8,7 @@
 //     (src/lib/auth/server.ts).
 import { NextResponse, type NextRequest } from "next/server";
 import { SESSION_COOKIE } from "@/lib/auth/constants";
+import { firebaseConfig } from "@/lib/firebase/config";
 import { contentSecurityPolicy, newNonce } from "@/lib/security/csp";
 
 /** Header telling the customer-area layout which page to return to after sign-in. */
@@ -19,7 +20,7 @@ export const ADMIN_LOGIN_PATH = "/admin/login";
 function policy(nonce: string): string {
   return contentSecurityPolicy({
     nonce,
-    authDomain: process.env.NEXT_PUBLIC_FIREBASE_AUTH_DOMAIN,
+    authDomain: firebaseConfig.authDomain,
     emulatorHost:
       process.env.NEXT_PUBLIC_FIREBASE_USE_EMULATORS === "true" ? process.env.NEXT_PUBLIC_FIREBASE_EMULATOR_HOST || "127.0.0.1" : null,
     appCheck: Boolean(process.env.NEXT_PUBLIC_FIREBASE_APPCHECK_SITE_KEY),

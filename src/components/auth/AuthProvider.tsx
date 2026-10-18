@@ -17,6 +17,12 @@ import { getFirebase } from "@/lib/firebase/client";
 import { isFirebaseConfigured } from "@/lib/firebase/config";
 import { syncProfileOnServer } from "@/lib/auth/profile";
 import { authErrorCode, describeAuthError, noticeFor, type AuthNotice } from "@/lib/auth/errors";
+import {
+  formatWait,
+  startVerificationCooldown,
+  VERIFICATION_COOLDOWN_SECONDS,
+  VERIFICATION_RATE_LIMITED_SECONDS,
+} from "@/lib/auth/resend-cooldown";
 
 export type AuthResult = { ok: true; notice?: AuthNotice } | { ok: false; notice: AuthNotice };
 export type ProfileStatus = "idle" | "ready" | "error";
@@ -164,6 +170,9 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
         }
         try {
           await sendEmailVerification(created, verificationSettings());
+          // Firebase refuses another send for about a minute; the account page's
+          // Resend button waits out the same cooldown instead of failing.
+          startVerificationCooldown(created.uid, VERIFICATION_COOLDOWN_SECONDS);
         } catch (error) {
           describeAuthError(error, "verification email");
           verificationNotice = noticeFor("verification/send-failed");
@@ -205,9 +214,21 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
     if (!current) return { ok: false, notice: noticeFor("auth/requires-recent-login") };
     try {
       await sendEmailVerification(current, verificationSettings());
+      startVerificationCooldown(current.uid, VERIFICATION_COOLDOWN_SECONDS);
       return { ok: true };
     } catch (error) {
-      return { ok: false, notice: describeAuthError(error, "resend verification") };
+      const notice = describeAuthError(error, "resend verification");
+      if (authErrorCode(error) !== "auth/too-many-requests") return { ok: false, notice };
+      startVerificationCooldown(current.uid, VERIFICATION_RATE_LIMITED_SECONDS);
+      return {
+        ok: false,
+        notice: {
+          tone: "error",
+          message: `Too many verification emails were requested for this account. Please wait ${formatWait(
+            VERIFICATION_RATE_LIMITED_SECONDS
+          )} before sending another; the Resend button unlocks when you can. The last email we sent still works.`,
+        },
+      };
     }
   }, []);
 
