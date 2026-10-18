@@ -68,6 +68,8 @@ export default function Gallery({ variant = "home" }: { variant?: "home" | "page
                 width={item.width}
                 height={item.height}
                 sizes="(min-width: 1024px) 33vw, (min-width: 640px) 33vw, 50vw"
+                // First row of the gallery page is above the fold (LCP candidate).
+                loading={isPage && i < 3 ? "eager" : undefined}
                 className="h-full w-full object-cover transition-transform duration-[1600ms] ease-elegant group-hover:scale-[1.02]"
               />
               <span

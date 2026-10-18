@@ -70,7 +70,7 @@ export default function NotificationList({ items, unread }: { items: Notificatio
             <div className="flex flex-col gap-2 sm:flex-row sm:items-start sm:justify-between">
               <div className="min-w-0">
                 <p className="font-semibold text-ink">
-                  {!n.read && <span className="mr-2 rounded bg-noir px-1.5 py-0.5 text-xs font-semibold text-white">New</span>}
+                  {!n.read && <span className="mr-2 rounded bg-imperial px-1.5 py-0.5 text-xs font-semibold text-white">New</span>}
                   {n.title}
                 </p>
                 <p className="mt-1 break-words text-[0.9375rem] leading-relaxed text-ink-soft">{n.message}</p>

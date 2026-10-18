@@ -1,7 +1,7 @@
 // Maps Firebase error codes to messages customers can act on. The raw code is
 // logged for debugging but never shown verbatim.
 
-export type AuthNotice = { tone: "error" | "info"; message: string };
+export type AuthNotice = { tone: "error" | "warning" | "info"; message: string };
 
 const messages: Record<string, AuthNotice> = {
   "auth/invalid-email": { tone: "error", message: "Please enter a valid email address." },
@@ -45,6 +45,20 @@ const messages: Record<string, AuthNotice> = {
     message: "Google sign-in isn't set up for this website address yet. Please use email and password.",
   },
   "auth/requires-recent-login": { tone: "error", message: "Please sign in again to continue." },
+  "auth/user-token-expired": { tone: "error", message: "Your sign-in has expired. Please sign out and sign in again." },
+  "auth/invalid-user-token": { tone: "error", message: "Your sign-in has expired. Please sign out and sign in again." },
+  "auth/unauthorized-continue-uri": {
+    tone: "error",
+    message: "Emails can't link back to this website address yet. Please try again later or contact the venue.",
+  },
+  "auth/invalid-api-key": {
+    tone: "error",
+    message: "Online accounts are misconfigured on this website. Please contact the venue.",
+  },
+  "auth/app-not-authorized": {
+    tone: "error",
+    message: "Online accounts aren't set up for this website address yet. Please contact the venue.",
+  },
   "auth/expired-action-code": {
     tone: "error",
     message: "This link has expired. Please request a new one.",
@@ -119,6 +133,11 @@ const messages: Record<string, AuthNotice> = {
 
 const fallback: AuthNotice = { tone: "error", message: "Something went wrong. Please try again." };
 
+/** Unrecognised errors show their code (never a secret) so they can be reported and diagnosed. */
+function withCode(notice: AuthNotice, code: string): AuthNotice {
+  return code === "unknown" ? notice : { ...notice, message: `${notice.message} (Error: ${code})` };
+}
+
 export function authErrorCode(error: unknown): string {
   if (error && typeof error === "object" && "code" in error && typeof error.code === "string") return error.code;
   return "unknown";
@@ -133,7 +152,7 @@ export function authErrorCode(error: unknown): string {
 export function describeAuthError(error: unknown, context: string): AuthNotice {
   const code = authErrorCode(error);
   console.error(`[auth] ${context} failed: ${code}`);
-  return messages[code] ?? fallback;
+  return messages[code] ?? withCode(fallback, code);
 }
 
 /** Message for a code; unknown codes use `fallbackCode`'s message, then a generic one. */

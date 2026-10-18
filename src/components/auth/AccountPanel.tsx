@@ -3,11 +3,10 @@
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 import type { AuthNotice } from "@/lib/auth/errors";
+import { formatCountdown, verificationCooldownLeft } from "@/lib/auth/resend-cooldown";
 import Icon from "../Icon";
 import { useAuth } from "./AuthProvider";
 import { NoticeBox } from "./fields";
-
-const RESEND_COOLDOWN_SECONDS = 60;
 
 export interface AccountSummary {
   email: string | null;
@@ -24,12 +23,20 @@ export default function AccountPanel({ initial }: { initial: AccountSummary }) {
   const [notice, setNotice] = useState<AuthNotice | null>(null);
   const [busy, setBusy] = useState<null | "resend" | "check" | "profile" | "signout">(null);
   const [cooldown, setCooldown] = useState(0);
+  const uid = user?.uid ?? null;
 
+  // Seconds until Resend unlocks, read from the stored end time (so it also
+  // covers the email sent at sign-up and survives a reload).
   useEffect(() => {
-    if (cooldown <= 0) return;
-    const t = window.setTimeout(() => setCooldown((c) => c - 1), 1000);
-    return () => window.clearTimeout(t);
-  }, [cooldown]);
+    if (!uid) return;
+    const tick = () => setCooldown(verificationCooldownLeft(uid));
+    const first = window.setTimeout(tick, 0);
+    const t = window.setInterval(tick, 1000);
+    return () => {
+      window.clearTimeout(first);
+      window.clearInterval(t);
+    };
+  }, [uid]);
 
   const isPassword = initial.signInProvider === "password";
   const displayName = user?.displayName ?? initial.name;
@@ -42,8 +49,8 @@ export default function AccountPanel({ initial }: { initial: AccountSummary }) {
     const result = await resendVerification();
     if (result.ok) {
       setNotice({ tone: "info", message: `We sent a new verification link to ${email}. Check your inbox and spam folder.` });
-      setCooldown(RESEND_COOLDOWN_SECONDS);
     } else setNotice(result.notice);
+    if (uid) setCooldown(verificationCooldownLeft(uid));
     setBusy(null);
   };
 
@@ -58,7 +65,7 @@ export default function AccountPanel({ initial }: { initial: AccountSummary }) {
       router.refresh();
     } else {
       setNotice({
-        tone: "info",
+        tone: "warning",
         message: "Your email isn't verified yet. Open the link in the email we sent, then check again.",
       });
     }
@@ -147,7 +154,11 @@ export default function AccountPanel({ initial }: { initial: AccountSummary }) {
               aria-busy={busy === "resend" || undefined}
               className="btn btn-outline"
             >
-              {busy === "resend" ? "Sending…" : cooldown > 0 ? `Resend available in ${cooldown}s` : "Resend verification email"}
+              {busy === "resend"
+                ? "Sending…"
+                : cooldown > 0
+                  ? `Resend available in ${formatCountdown(cooldown)}`
+                  : "Resend verification email"}
             </button>
           </div>
         </section>

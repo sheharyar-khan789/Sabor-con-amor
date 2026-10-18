@@ -17,6 +17,12 @@ import { getFirebase } from "@/lib/firebase/client";
 import { isFirebaseConfigured } from "@/lib/firebase/config";
 import { syncProfileOnServer } from "@/lib/auth/profile";
 import { authErrorCode, describeAuthError, noticeFor, type AuthNotice } from "@/lib/auth/errors";
+import {
+  formatWait,
+  startVerificationCooldown,
+  VERIFICATION_COOLDOWN_SECONDS,
+  VERIFICATION_RATE_LIMITED_SECONDS,
+} from "@/lib/auth/resend-cooldown";
 
 export type AuthResult = { ok: true; notice?: AuthNotice } | { ok: false; notice: AuthNotice };
 export type ProfileStatus = "idle" | "ready" | "error";
@@ -36,7 +42,7 @@ interface AuthContextValue {
   resendVerification: () => Promise<AuthResult>;
   refreshVerification: () => Promise<AuthResult & { verified?: boolean }>;
   retryProfile: () => Promise<AuthResult>;
-  requestPasswordReset: (email: string) => Promise<AuthResult>;
+  requestPasswordReset: (email: string, returnPath?: "/login" | "/admin/login") => Promise<AuthResult>;
 }
 
 const AuthContext = createContext<AuthContextValue | null>(null);
@@ -64,6 +70,21 @@ async function startServerSession(user: User): Promise<{ profileOk: boolean }> {
 
 function verificationSettings() {
   return { url: `${window.location.origin}/account`, handleCodeInApp: false };
+}
+
+// Firebase refuses a "continue" link to a domain missing from Authentication >
+// Settings > Authorized domains. The link back to the site is a convenience,
+// so the email is then sent without it rather than not at all.
+const CONTINUE_URL_ERRORS = new Set(["auth/unauthorized-continue-uri", "auth/invalid-continue-uri", "auth/missing-continue-uri"]);
+
+async function sendVerificationEmail(user: User): Promise<void> {
+  try {
+    await sendEmailVerification(user, verificationSettings());
+  } catch (error) {
+    if (!CONTINUE_URL_ERRORS.has(authErrorCode(error))) throw error;
+    describeAuthError(error, "verification continue link (add this domain to Firebase Authorized domains)");
+    await sendEmailVerification(user);
+  }
 }
 
 export function AuthProvider({ children }: { children: React.ReactNode }) {
@@ -163,7 +184,10 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
           describeAuthError(error, "display name update");
         }
         try {
-          await sendEmailVerification(created, verificationSettings());
+          await sendVerificationEmail(created);
+          // Firebase refuses another send for about a minute; the account page's
+          // Resend button waits out the same cooldown instead of failing.
+          startVerificationCooldown(created.uid, VERIFICATION_COOLDOWN_SECONDS);
         } catch (error) {
           describeAuthError(error, "verification email");
           verificationNotice = noticeFor("verification/send-failed");
@@ -204,10 +228,22 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
     const current = isFirebaseConfigured ? getFirebase().auth.currentUser : null;
     if (!current) return { ok: false, notice: noticeFor("auth/requires-recent-login") };
     try {
-      await sendEmailVerification(current, verificationSettings());
+      await sendVerificationEmail(current);
+      startVerificationCooldown(current.uid, VERIFICATION_COOLDOWN_SECONDS);
       return { ok: true };
     } catch (error) {
-      return { ok: false, notice: describeAuthError(error, "resend verification") };
+      const notice = describeAuthError(error, "resend verification");
+      if (authErrorCode(error) !== "auth/too-many-requests") return { ok: false, notice };
+      startVerificationCooldown(current.uid, VERIFICATION_RATE_LIMITED_SECONDS);
+      return {
+        ok: false,
+        notice: {
+          tone: "error",
+          message: `Too many verification emails were requested for this account. Please wait ${formatWait(
+            VERIFICATION_RATE_LIMITED_SECONDS
+          )} before sending another; the Resend button unlocks when you can. The last email we sent still works.`,
+        },
+      };
     }
   }, []);
 
@@ -232,11 +268,11 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
    * validates the one-time code; nothing is stored by this app. "No such user"
    * is reported as success so the form cannot reveal which emails have accounts.
    */
-  const requestPasswordReset = useCallback(async (email: string): Promise<AuthResult> => {
+  const requestPasswordReset = useCallback(async (email: string, returnPath: "/login" | "/admin/login" = "/login"): Promise<AuthResult> => {
     if (!isFirebaseConfigured) return { ok: false, notice: noticeFor("session/unavailable") };
     try {
       await sendPasswordResetEmail(getFirebase().auth, email.trim(), {
-        url: `${window.location.origin}/login`,
+        url: `${window.location.origin}${returnPath}`,
         handleCodeInApp: false,
       });
       return { ok: true };

@@ -181,6 +181,7 @@ export default function Hero() {
                 alt={`The ${business.name} building at dusk with its lit signs`}
                 fill
                 sizes="380px"
+                loading="eager"
                 className="object-cover"
               />
               {playVideos && isDesktop && (

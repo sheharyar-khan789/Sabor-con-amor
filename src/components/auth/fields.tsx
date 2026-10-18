@@ -76,7 +76,7 @@ export function NoticeBox({ notice }: { notice: AuthNotice | null }) {
         error ? "border-red-200 bg-red-50 text-red-800" : "border-gold-container/40 bg-gold-pale/40 text-ink"
       }`}
     >
-      <Icon name={error ? "alert" : "check"} className="mt-0.5 h-4 w-4 shrink-0" />
+      <Icon name={notice.tone === "info" ? "check" : "alert"} className="mt-0.5 h-4 w-4 shrink-0" />
       <p>{notice.message}</p>
     </div>
   );

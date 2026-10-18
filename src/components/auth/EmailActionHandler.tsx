@@ -29,7 +29,10 @@ export default function EmailActionHandler({
   const { configured } = useAuth();
   if (!configured) return <NotConfigured />;
   if (mode === "verifyEmail" && oobCode) return <VerifyEmail oobCode={oobCode} continuePath={continuePath} />;
-  if (mode === "resetPassword" && oobCode) return <ResetPassword oobCode={oobCode} />;
+  if (mode === "resetPassword" && oobCode) {
+    // Admin resets (requested from /admin/login) return to the admin sign-in.
+    return <ResetPassword oobCode={oobCode} signInPath={continuePath === "/admin/login" ? "/admin/login" : "/login"} />;
+  }
   if ((mode === "verifyAndChangeEmail" || mode === "recoverEmail") && oobCode) {
     return <ChangeEmail oobCode={oobCode} mode={mode} />;
   }
@@ -107,7 +110,7 @@ function VerifyEmail({ oobCode, continuePath }: { oobCode: string; continuePath:
   );
 }
 
-function ResetPassword({ oobCode }: { oobCode: string }) {
+function ResetPassword({ oobCode, signInPath }: { oobCode: string; signInPath: string }) {
   const [state, setState] = useState<"checking" | "ready" | "saving" | "done" | "failed">("checking");
   const [accountEmail, setAccountEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -177,7 +180,7 @@ function ResetPassword({ oobCode }: { oobCode: string }) {
             message: "Your password has been changed. For your security, you've been signed out everywhere.",
           }}
         />
-        <Link href="/login" className="btn btn-primary w-full">
+        <Link href={signInPath} className="btn btn-primary w-full">
           Sign in with your new password
         </Link>
       </div>
@@ -188,10 +191,10 @@ function ResetPassword({ oobCode }: { oobCode: string }) {
     return (
       <div className="space-y-5">
         <NoticeBox notice={notice} />
-        <Link href="/forgot-password" className="btn btn-primary w-full">
+        <Link href={signInPath === "/admin/login" ? "/forgot-password?for=admin" : "/forgot-password"} className="btn btn-primary w-full">
           Request a new reset link
         </Link>
-        <Link href="/login" className="btn btn-outline w-full">
+        <Link href={signInPath} className="btn btn-outline w-full">
           Back to sign in
         </Link>
       </div>

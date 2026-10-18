@@ -21,7 +21,7 @@ function remainingCooldown(): number {
   }
 }
 
-export default function ForgotPasswordForm() {
+export default function ForgotPasswordForm({ forAdmin = false }: { forAdmin?: boolean }) {
   const { configured, requestPasswordReset } = useAuth();
   const [email, setEmail] = useState("");
   const [error, setError] = useState<string>();
@@ -29,6 +29,7 @@ export default function ForgotPasswordForm() {
   const [sentTo, setSentTo] = useState<string | null>(null);
   const [pending, setPending] = useState(false);
   const [cooldown, setCooldown] = useState(0);
+  const signInPath = forAdmin ? "/admin/login" : "/login";
 
   useEffect(() => {
     // sessionStorage is browser-only: read it after mount, never during render.
@@ -53,7 +54,7 @@ export default function ForgotPasswordForm() {
     setError(undefined);
     if (remainingCooldown() > 0) return;
     setPending(true);
-    const result = await requestPasswordReset(email);
+    const result = await requestPasswordReset(email, signInPath);
     setPending(false);
     if (!result.ok) {
       setNotice(result.notice);
@@ -76,12 +77,14 @@ export default function ForgotPasswordForm() {
             If an account with a password exists for <strong className="font-semibold">{sentTo}</strong>, we&rsquo;ve
             emailed a link to reset it. Check your inbox and spam folder; the link expires after a short time.
           </p>
-          <p className="text-sm leading-relaxed text-ink-soft">
-            Signed up with Google? You don&rsquo;t have a password with us &mdash; just use{" "}
-            <strong className="font-semibold text-ink">Continue with Google</strong> on the sign-in page.
-          </p>
+          {!forAdmin && (
+            <p className="text-sm leading-relaxed text-ink-soft">
+              Signed up with Google? You don&rsquo;t have a password with us &mdash; just use{" "}
+              <strong className="font-semibold text-ink">Continue with Google</strong> on the sign-in page.
+            </p>
+          )}
         </div>
-        <Link href="/login" className="btn btn-primary w-full">
+        <Link href={signInPath} className="btn btn-primary w-full">
           Back to sign in
         </Link>
         <button
@@ -122,7 +125,7 @@ export default function ForgotPasswordForm() {
       </form>
       <p className="text-center text-sm text-ink-soft">
         Remembered it?{" "}
-        <Link href="/login" className="font-semibold text-gold underline-offset-4 hover:text-ink hover:underline">
+        <Link href={signInPath} className="font-semibold text-gold underline-offset-4 hover:text-ink hover:underline">
           Back to sign in
         </Link>
       </p>
