@@ -1,7 +1,7 @@
 // Maps Firebase error codes to messages customers can act on. The raw code is
 // logged for debugging but never shown verbatim.
 
-export type AuthNotice = { tone: "error" | "info"; message: string };
+export type AuthNotice = { tone: "error" | "warning" | "info"; message: string };
 
 const messages: Record<string, AuthNotice> = {
   "auth/invalid-email": { tone: "error", message: "Please enter a valid email address." },

@@ -65,7 +65,7 @@ export default function AccountPanel({ initial }: { initial: AccountSummary }) {
       router.refresh();
     } else {
       setNotice({
-        tone: "info",
+        tone: "warning",
         message: "Your email isn't verified yet. Open the link in the email we sent, then check again.",
       });
     }
