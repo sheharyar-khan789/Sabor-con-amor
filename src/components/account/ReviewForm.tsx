@@ -69,7 +69,7 @@ export default function ReviewForm({
         <legend className="mb-2 text-sm font-semibold text-ink">Your rating</legend>
         <div className="flex flex-wrap gap-2">
           {[1, 2, 3, 4, 5].map((n) => (
-            <label key={n} className={`inline-flex min-h-[44px] cursor-pointer items-center gap-1 rounded-xl border px-3 text-sm font-semibold ${rating === n ? "border-ink bg-noir text-white" : "border-line-strong/60 text-ink"}`}>
+            <label key={n} className={`inline-flex min-h-[44px] cursor-pointer items-center gap-1 rounded-md border px-3 text-sm font-semibold ${rating === n ? "border-imperial bg-imperial text-white" : "border-line-strong/60 text-ink"}`}>
               <input type="radio" name={`${uid}-rating`} value={n} checked={rating === n} onChange={() => setRating(n)} className="sr-only" />
               {n} <span aria-hidden="true">★</span>
               <span className="sr-only"> star{n === 1 ? "" : "s"}</span>

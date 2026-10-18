@@ -17,7 +17,7 @@ function Kpi({ label, value, href, feature = false }: { label: string; value: nu
     </>
   );
   return (
-    <div className={`rounded-xl border px-5 py-5 ${feature ? "border-noir bg-noir" : "border-line bg-surface"}`}>
+    <div className={`rounded-lg border px-5 py-5 ${feature ? "border-imperial bg-imperial" : "border-line bg-surface"}`}>
       {href ? (
         <Link href={href} className="block hover:underline">
           {body}
@@ -62,7 +62,7 @@ export default async function AdminDashboard() {
           id="alerts"
           action={
             <span className="flex flex-wrap items-center gap-2 text-sm" aria-live="polite">
-              <span className="rounded-full bg-noir px-2.5 py-0.5 font-semibold text-gold-light">{alerts.data.count} waiting</span>
+              <span className="rounded-full bg-imperial px-2.5 py-0.5 font-semibold text-gold-light">{alerts.data.count} waiting</span>
               {alerts.data.newCount > 0 && <span className="rounded-full border border-gold px-2.5 py-0.5 font-semibold text-ink">{alerts.data.newCount} new since your last visit</span>}
             </span>
           }
@@ -83,7 +83,7 @@ export default async function AdminDashboard() {
                   >
                     <span className="min-w-0 text-sm">
                       <span className="flex flex-wrap items-center gap-2 font-semibold text-ink">
-                        {a.isNew && <span className="rounded bg-gold-light px-1.5 text-[0.6875rem] font-bold uppercase tracking-wide text-noir">New</span>}
+                        {a.isNew && <span className="rounded bg-gold-light px-1.5 text-[0.6875rem] font-bold uppercase tracking-wide text-imperial">New</span>}
                         {a.label} · {a.customerName || "—"}
                       </span>
                       <span className="block break-words text-ink-muted">
