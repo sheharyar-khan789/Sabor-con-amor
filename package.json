@@ -16,7 +16,7 @@
     "test:booking:firestore": "firebase emulators:exec --only firestore --project demo-sabor-con-amor \"node --disable-warning=MODULE_TYPELESS_PACKAGE_JSON --test --test-concurrency=1 tests/firestore/*.test.ts\""
   },
   "dependencies": {
-    "firebase": "^12.19.0",
+    "firebase": "^13.0.0",
     "firebase-admin": "^14.5.0",
     "next": "^16.3.8",
     "pdf-lib": "1.17.1",
