@@ -42,7 +42,7 @@ interface AuthContextValue {
   resendVerification: () => Promise<AuthResult>;
   refreshVerification: () => Promise<AuthResult & { verified?: boolean }>;
   retryProfile: () => Promise<AuthResult>;
-  requestPasswordReset: (email: string) => Promise<AuthResult>;
+  requestPasswordReset: (email: string, returnPath?: "/login" | "/admin/login") => Promise<AuthResult>;
 }
 
 const AuthContext = createContext<AuthContextValue | null>(null);
@@ -268,11 +268,11 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
    * validates the one-time code; nothing is stored by this app. "No such user"
    * is reported as success so the form cannot reveal which emails have accounts.
    */
-  const requestPasswordReset = useCallback(async (email: string): Promise<AuthResult> => {
+  const requestPasswordReset = useCallback(async (email: string, returnPath: "/login" | "/admin/login" = "/login"): Promise<AuthResult> => {
     if (!isFirebaseConfigured) return { ok: false, notice: noticeFor("session/unavailable") };
     try {
       await sendPasswordResetEmail(getFirebase().auth, email.trim(), {
-        url: `${window.location.origin}/login`,
+        url: `${window.location.origin}${returnPath}`,
         handleCodeInApp: false,
       });
       return { ok: true };

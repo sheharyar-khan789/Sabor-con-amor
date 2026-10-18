@@ -46,7 +46,7 @@ export default async function AdminLoginPage({
               <AdminLoginForm next={nextPath} reason={reason === "mfa" || reason === "expired" ? reason : undefined} />
             </div>
             <p className="mt-6 text-center text-sm">
-              <Link href="/forgot-password" className="inline-flex min-h-[44px] items-center gap-1.5 font-semibold text-brass-text underline-offset-4 hover:text-imperial hover:underline">
+              <Link href="/forgot-password?for=admin" className="inline-flex min-h-[44px] items-center gap-1.5 font-semibold text-brass-text underline-offset-4 hover:text-imperial hover:underline">
                 <Icon name="mail" className="h-4 w-4" />
                 Forgot password?
               </Link>
