@@ -6,7 +6,8 @@
 //
 // Run locally by the venue owner/developer, with server credentials in .env.local:
 //   node --env-file=.env.local scripts/set-super-admin.mjs <email> --create          # new admin: asks for a password
-//   node --env-file=.env.local scripts/set-super-admin.mjs <email>                   # make an existing account admin
+//   node --env-file=.env.local scripts/set-super-admin.mjs <email> --take-over       # existing account: new password + verified + admin
+//   node --env-file=.env.local scripts/set-super-admin.mjs <email>                   # make an existing verified account admin
 //   node --env-file=.env.local scripts/set-super-admin.mjs <email> --reset-password  # set a new admin password
 //   node --env-file=.env.local scripts/set-super-admin.mjs <email> --revoke          # remove admin access
 //   node --env-file=.env.local scripts/set-super-admin.mjs --list                    # show current admins
@@ -22,8 +23,8 @@ import { getAuth } from "firebase-admin/auth";
 
 const ROLE = "super_admin";
 const MIN_PASSWORD = 12;
-const FLAGS = ["--create", "--reset-password", "--revoke"];
-const USAGE = "Usage: node --env-file=.env.local scripts/set-super-admin.mjs <email> [--create | --reset-password | --revoke]\n       node --env-file=.env.local scripts/set-super-admin.mjs --list";
+const FLAGS = ["--create", "--take-over", "--reset-password", "--revoke"];
+const USAGE = "Usage: node --env-file=.env.local scripts/set-super-admin.mjs <email> [--create | --take-over | --reset-password | --revoke]\n       node --env-file=.env.local scripts/set-super-admin.mjs --list";
 
 const [first, flag] = process.argv.slice(2);
 const list = first === "--list";
@@ -100,7 +101,7 @@ try {
       throw error;
     });
     if (existing) {
-      console.error(`Refusing: ${email} already has an account. Run without --create to make it admin, or use --reset-password.`);
+      console.error(`Refusing: ${email} already has an account. Use --take-over to make that account the admin (new password, verified), or --reset-password.`);
       process.exit(1);
     }
     const password = await askPassword();
@@ -111,6 +112,18 @@ try {
   }
 
   const user = await auth.getUserByEmail(email);
+
+  if (flag === "--take-over") {
+    // For an account that already exists (e.g. added in the Firebase Console)
+    // but is unverified or has a password the owner doesn't want to keep: the
+    // owner picks a new password here, the email counts as verified, and the
+    // account becomes Super Admin. Nothing else on the account is changed.
+    const password = await askPassword();
+    const updated = await auth.updateUser(user.uid, { password, emailVerified: true });
+    await grant(updated);
+    console.log(`${email} (uid ${user.uid}) now has your new password, a verified email and the ${ROLE} role. Sign in at /admin/login.`);
+    process.exit(0);
+  }
 
   if (flag === "--revoke") {
     const claims = { ...(user.customClaims ?? {}) };
@@ -133,7 +146,7 @@ try {
   }
 
   if (!user.emailVerified) {
-    console.error(`Refusing: ${email} has not verified its email address yet (or use --create for a new admin account).`);
+    console.error(`Refusing: ${email} has not verified its email address yet (use --take-over to set a new password, verify it and make it admin).`);
     process.exit(1);
   }
   // Admin sign-in is email + password only (no Google), so the account needs a password.
