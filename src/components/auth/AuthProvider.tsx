@@ -72,6 +72,21 @@ function verificationSettings() {
   return { url: `${window.location.origin}/account`, handleCodeInApp: false };
 }
 
+// Firebase refuses a "continue" link to a domain missing from Authentication >
+// Settings > Authorized domains. The link back to the site is a convenience,
+// so the email is then sent without it rather than not at all.
+const CONTINUE_URL_ERRORS = new Set(["auth/unauthorized-continue-uri", "auth/invalid-continue-uri", "auth/missing-continue-uri"]);
+
+async function sendVerificationEmail(user: User): Promise<void> {
+  try {
+    await sendEmailVerification(user, verificationSettings());
+  } catch (error) {
+    if (!CONTINUE_URL_ERRORS.has(authErrorCode(error))) throw error;
+    describeAuthError(error, "verification continue link (add this domain to Firebase Authorized domains)");
+    await sendEmailVerification(user);
+  }
+}
+
 export function AuthProvider({ children }: { children: React.ReactNode }) {
   const [user, setUser] = useState<User | null>(null);
   const [loading, setLoading] = useState(isFirebaseConfigured);
@@ -169,7 +184,7 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
           describeAuthError(error, "display name update");
         }
         try {
-          await sendEmailVerification(created, verificationSettings());
+          await sendVerificationEmail(created);
           // Firebase refuses another send for about a minute; the account page's
           // Resend button waits out the same cooldown instead of failing.
           startVerificationCooldown(created.uid, VERIFICATION_COOLDOWN_SECONDS);
@@ -213,7 +228,7 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
     const current = isFirebaseConfigured ? getFirebase().auth.currentUser : null;
     if (!current) return { ok: false, notice: noticeFor("auth/requires-recent-login") };
     try {
-      await sendEmailVerification(current, verificationSettings());
+      await sendVerificationEmail(current);
       startVerificationCooldown(current.uid, VERIFICATION_COOLDOWN_SECONDS);
       return { ok: true };
     } catch (error) {
