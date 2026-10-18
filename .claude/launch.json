@@ -1,0 +1,28 @@
+{
+  "version": "0.0.1",
+  "configurations": [
+    {
+      "name": "sabor-web",
+      "cwd": "C:\\Users\\sheharyar\\OneDrive\\Desktop\\Sabor con Amor",
+      "runtimeExecutable": "npm",
+      "runtimeArgs": ["run", "dev", "--", "--port", "3010"],
+      "port": 3010,
+      "autoPort": false
+    },
+    {
+      "name": "sabor-web-emulator-demo",
+      "cwd": "C:\\Users\\sheharyar\\OneDrive\\Desktop\\Sabor con Amor",
+      "runtimeExecutable": "npm",
+      "runtimeArgs": ["run", "dev", "--", "--port", "3110"],
+      "port": 3110,
+      "autoPort": false,
+      "env": {
+        "NEXT_PUBLIC_FIREBASE_USE_EMULATORS": "true",
+        "NEXT_PUBLIC_FIREBASE_API_KEY": "demo-api-key",
+        "NEXT_PUBLIC_FIREBASE_AUTH_DOMAIN": "demo-sabor-con-amor.firebaseapp.com",
+        "NEXT_PUBLIC_FIREBASE_PROJECT_ID": "demo-sabor-con-amor",
+        "NEXT_PUBLIC_FIREBASE_APP_ID": "demo-app-id"
+      }
+    }
+  ]
+}

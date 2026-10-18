@@ -1,0 +1,70 @@
+# Sabor con Amor — continuous integration.
+# Runs on every push and pull request. Uses NO secrets and never touches a real
+# Firebase project: the Firestore tests run against the local emulator with the
+# "demo-sabor-con-amor" project (Firebase's emulator-only project prefix).
+name: CI
+
+on:
+  push:
+  pull_request:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: ci-${{ github.ref }}
+  cancel-in-progress: true
+
+# The app lives at the repository root.
+jobs:
+  quality:
+    name: Typecheck, lint, unit tests, audit, build
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 24
+          cache: npm
+          cache-dependency-path: package-lock.json
+      # Exact lockfile install; fails if package.json and the lockfile disagree.
+      - run: npm ci
+      - run: npm run typecheck
+      - run: npm run lint
+      - run: npm run test:booking
+      - name: npm audit (report only)
+        run: npm audit --audit-level=high
+        continue-on-error: true
+      - name: Production build (no credentials; the site builds in its "not configured" state)
+        run: npm run build
+        env:
+          NEXT_TELEMETRY_DISABLED: "1"
+
+  firestore:
+    name: Firestore rules + real-adapter tests (emulator)
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 24
+          cache: npm
+          cache-dependency-path: package-lock.json
+      # The Firestore emulator needs Java 21 or newer.
+      - uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: "21"
+      - run: npm ci
+      # Pinned CLI version (the scripts call `firebase`).
+      - run: npm install --global firebase-tools@15.31.0
+      - name: Security rules (Firestore + Storage + Auth emulators)
+        run: npm run test:rules
+      - name: Booking / finance / account tests on the real Firestore adapter
+        run: npm run test:booking:firestore

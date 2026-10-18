@@ -1,0 +1,992 @@
+<!DOCTYPE html>
+
+<!-- SABOR CON AMOR DESIGN REFERENCE (Google Stitch). Layout and visual system are approved. ALL CONTENT IS PLACEHOLDER: halls, capacities, phone numbers, emails, addresses, prices, statistics, names, testimonials and remote stock images are NOT Sabor con Amor facts and must not ship. Brand name replaced from "Pak Marquee" in Phase 1; screen.png still shows the original placeholder brand. See DESIGN_MAPPING.md. -->
+<html lang="en"><head><meta charset="utf-8"/><meta content="width=device-width, initial-scale=1.0" name="viewport"/><meta content="web_dashboard" name="shell-type"/><link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&amp;family=Plus+Jakarta+Sans:ital,wght@0,200..800;1,200..800&amp;display=swap" rel="stylesheet"/><link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/><style>@layer base{html,body{margin:0;padding:0;}body{overscroll-behavior:none;}main>:first-child{margin-top:0!important;}main>:last-child{margin-bottom:0!important;}}::-webkit-scrollbar{display:none;}</style><script src="https://cdn.tailwindcss.com"></script><script id="tailwind-config">tailwind.config = {
+    darkMode: "class",
+    theme: {
+      extend: {
+        "colors": {
+          "on-secondary-fixed": "#261900",
+          "surface-variant": "#e4e2df",
+          "on-primary": "#ffffff",
+          "on-background": "#1b1c1a",
+          "tertiary-container": "#012f23",
+          "on-tertiary-container": "#6e9888",
+          "surface-container": "#efeeeb",
+          "on-secondary-fixed-variant": "#5d4201",
+          "on-surface": "#1b1c1a",
+          "on-tertiary-fixed": "#002117",
+          "inverse-primary": "#accebf",
+          "surface-container-low": "#f5f3f0",
+          "tertiary": "#001811",
+          "surface-dim": "#dbdad7",
+          "secondary-fixed": "#ffdea5",
+          "on-surface-variant": "#414845",
+          "secondary": "#775a19",
+          "error-container": "#ffdad6",
+          "tertiary-fixed-dim": "#a4d0be",
+          "primary-fixed": "#c8eadb",
+          "outline-variant": "#c1c8c3",
+          "surface-container-highest": "#e4e2df",
+          "primary": "#001811",
+          "on-error-container": "#93000a",
+          "outline": "#727975",
+          "secondary-fixed-dim": "#e9c176",
+          "primary-fixed-dim": "#accebf",
+          "tertiary-fixed": "#bfecda",
+          "on-secondary-container": "#785a1a",
+          "surface-container-lowest": "#ffffff",
+          "inverse-on-surface": "#f2f0ed",
+          "on-primary-fixed": "#012017",
+          "surface": "#fbf9f6",
+          "inverse-surface": "#30312f",
+          "on-error": "#ffffff",
+          "on-primary-fixed-variant": "#2e4d41",
+          "background": "#fbf9f6",
+          "on-tertiary": "#ffffff",
+          "on-primary-container": "#779789",
+          "surface-bright": "#fbf9f6",
+          "surface-container-high": "#eae8e5",
+          "on-secondary": "#ffffff",
+          "error": "#ba1a1a",
+          "on-tertiary-fixed-variant": "#254e41",
+          "secondary-container": "#fed488",
+          "primary-container": "#0f2e24",
+          "surface-tint": "#466559"
+        },
+        "borderRadius": {
+          "DEFAULT": "0.125rem",
+          "lg": "0.25rem",
+          "xl": "0.5rem",
+          "full": "0.75rem"
+        },
+        "spacing": {
+          "space-md": "1rem",
+          "space-sm": "0.5rem",
+          "gutter-mobile": "0.75rem",
+          "margin-mobile": "1rem",
+          "space-xl": "2.5rem",
+          "gutter": "1.5rem",
+          "space-lg": "1.5rem",
+          "margin": "2.5rem",
+          "space-xs": "0.25rem"
+        },
+        "fontFamily": {
+          "body-sm": [
+            "Plus Jakarta Sans"
+          ],
+          "display-md-mobile": [
+            "Playfair Display"
+          ],
+          "body-lg": [
+            "Plus Jakarta Sans"
+          ],
+          "body-md": [
+            "Plus Jakarta Sans"
+          ],
+          "display-lg-mobile": [
+            "Playfair Display"
+          ],
+          "headline-md": [
+            "Playfair Display"
+          ],
+          "label-md": [
+            "Plus Jakarta Sans"
+          ],
+          "label-lg": [
+            "Plus Jakarta Sans"
+          ],
+          "tabular-data": [
+            "Plus Jakarta Sans"
+          ],
+          "headline-lg": [
+            "Playfair Display"
+          ],
+          "headline-sm": [
+            "Plus Jakarta Sans"
+          ],
+          "title-sm": [
+            "Plus Jakarta Sans"
+          ],
+          "display-lg": [
+            "Playfair Display"
+          ],
+          "display-md": [
+            "Playfair Display"
+          ],
+          "title-md": [
+            "Plus Jakarta Sans"
+          ]
+        },
+        "fontSize": {
+          "body-sm": [
+            "12px",
+            {
+              "lineHeight": "18px",
+              "letterSpacing": "0.01em",
+              "fontWeight": "400"
+            }
+          ],
+          "display-md-mobile": [
+            "28px",
+            {
+              "lineHeight": "36px",
+              "letterSpacing": "-0.01em",
+              "fontWeight": "600"
+            }
+          ],
+          "body-lg": [
+            "16px",
+            {
+              "lineHeight": "26px",
+              "letterSpacing": "0em",
+              "fontWeight": "400"
+            }
+          ],
+          "body-md": [
+            "14px",
+            {
+              "lineHeight": "22px",
+              "letterSpacing": "0em",
+              "fontWeight": "400"
+            }
+          ],
+          "display-lg-mobile": [
+            "36px",
+            {
+              "lineHeight": "44px",
+              "letterSpacing": "-0.01em",
+              "fontWeight": "600"
+            }
+          ],
+          "headline-md": [
+            "24px",
+            {
+              "lineHeight": "32px",
+              "letterSpacing": "0em",
+              "fontWeight": "500"
+            }
+          ],
+          "label-md": [
+            "11px",
+            {
+              "lineHeight": "16px",
+              "letterSpacing": "0.06em",
+              "fontWeight": "600"
+            }
+          ],
+          "label-lg": [
+            "13px",
+            {
+              "lineHeight": "18px",
+              "letterSpacing": "0.04em",
+              "fontWeight": "600"
+            }
+          ],
+          "tabular-data": [
+            "13px",
+            {
+              "lineHeight": "20px",
+              "letterSpacing": "0em",
+              "fontWeight": "500"
+            }
+          ],
+          "headline-lg": [
+            "32px",
+            {
+              "lineHeight": "40px",
+              "letterSpacing": "-0.01em",
+              "fontWeight": "600"
+            }
+          ],
+          "headline-sm": [
+            "18px",
+            {
+              "lineHeight": "26px",
+              "letterSpacing": "-0.01em",
+              "fontWeight": "600"
+            }
+          ],
+          "title-sm": [
+            "14px",
+            {
+              "lineHeight": "20px",
+              "letterSpacing": "0.01em",
+              "fontWeight": "600"
+            }
+          ],
+          "display-lg": [
+            "56px",
+            {
+              "lineHeight": "64px",
+              "letterSpacing": "-0.02em",
+              "fontWeight": "600"
+            }
+          ],
+          "display-md": [
+            "40px",
+            {
+              "lineHeight": "48px",
+              "letterSpacing": "-0.015em",
+              "fontWeight": "600"
+            }
+          ],
+          "title-md": [
+            "16px",
+            {
+              "lineHeight": "24px",
+              "letterSpacing": "0em",
+              "fontWeight": "600"
+            }
+          ]
+        }
+      }
+    }
+  };</script></head><body class="bg-background font-body-md text-body-md text-on-surface antialiased"><aside class="fixed left-0 top-0 h-full w-72 bg-surface-container-low z-50 flex flex-col justify-between shadow-[0_1px_8px_rgba(0,0,0,0.04)]"><div class="flex flex-col h-full overflow-hidden"><div class="px-space-lg pt-space-lg pb-space-md"><div class="flex items-center gap-space-sm"><div class="w-10 h-10 rounded-xl bg-primary-container text-secondary-fixed flex items-center justify-center shadow-[0_2px_8px_rgba(15,46,36,0.18)]"><span class="material-symbols-outlined text-[24px]">hotel_class</span></div><div class="flex flex-col"><span class="font-headline-sm text-headline-sm tracking-wide text-primary uppercase">Sabor con Amor</span><span class="font-label-md text-label-md text-secondary tracking-widest uppercase">Banquet Hall · Restaurant · Rooftop BBQ</span></div></div><div class="mt-space-sm flex items-center justify-between"><span class="inline-flex items-center px-space-xs py-0.5 rounded-full bg-surface-container text-on-surface-variant font-label-md text-label-md uppercase tracking-wider">—</span><span class="inline-flex items-center gap-1 font-label-md text-label-md text-on-secondary-container"><span class="w-1.5 h-1.5 rounded-full bg-secondary"></span>PROD</span></div></div><div class="flex-1 overflow-y-auto px-space-sm space-y-space-md py-space-xs"><div class="space-y-1"><div class="px-space-sm py-1 font-label-md text-label-md uppercase tracking-wider text-on-surface-variant/70">Operational Core</div><nav class="space-y-1" data-active-classes="bg-primary-container text-on-primary font-bold shadow-[0_2px_8px_rgba(15,46,36,0.15)]"><a class="flex items-center justify-between px-space-sm py-2 rounded-lg text-on-surface-variant hover:bg-surface-container hover:text-on-surface transition-colors" data-path="overview-dashboard" href="#"><div class="flex items-center gap-space-sm"><span class="material-symbols-outlined text-[20px]">space_dashboard</span><span class="font-body-md text-body-md">Dashboard Overview</span></div></a><a class="flex items-center justify-between px-space-sm py-2 rounded-lg text-on-surface-variant hover:bg-surface-container hover:text-on-surface transition-colors" data-path="booking-management" href="#"><div class="flex items-center gap-space-sm"><span class="material-symbols-outlined text-[20px]">event_available</span><span class="font-body-md text-body-md">Bookings</span></div><span class="px-1.5 py-0.5 rounded-full bg-surface-container-high text-on-surface font-label-md text-label-md">14</span></a><a class="flex items-center justify-between px-space-sm py-2 rounded-lg text-on-surface-variant hover:bg-surface-container hover:text-on-surface transition-colors" data-path="calendar-&amp;-date-locks" href="#"><div class="flex items-center gap-space-sm"><span class="material-symbols-outlined text-[20px]">calendar_month</span><span class="font-body-md text-body-md">Availability / Calendar</span></div><span class="px-1.5 py-0.5 rounded-full bg-secondary-container text-on-secondary-container font-label-md text-label-md">—</span></a><a class="flex items-center justify-between px-space-sm py-2 rounded-lg text-on-surface-variant hover:bg-surface-container hover:text-on-surface transition-colors" data-path="customer-crm-&amp;-patrons" href="#"><div class="flex items-center gap-space-sm"><span class="material-symbols-outlined text-[20px]">groups</span><span class="font-body-md text-body-md">Customers</span></div></a></nav></div><div class="space-y-1"><div class="px-space-sm py-1 font-label-md text-label-md uppercase tracking-wider text-on-surface-variant/70">To be confirmed</div><nav class="space-y-1" data-active-classes="bg-primary-container text-on-primary font-bold shadow-[0_2px_8px_rgba(15,46,36,0.15)]"><a class="flex items-center justify-between px-space-sm py-2 rounded-lg text-on-surface-variant hover:bg-surface-container hover:text-on-surface transition-colors" data-path="menus-&amp;-degustation-cms" href="#"><div class="flex items-center gap-space-sm"><span class="material-symbols-outlined text-[20px]">restaurant_menu</span><span class="font-body-md text-body-md">Menus &amp; Packages</span></div></a><a class="flex items-center justify-between px-space-sm py-2 rounded-lg text-on-surface-variant hover:bg-surface-container hover:text-on-surface transition-colors" data-path="gallery-&amp;-lightbox-cms" href="#"><div class="flex items-center gap-space-sm"><span class="material-symbols-outlined text-[20px]">photo_library</span><span class="font-body-md text-body-md">Gallery</span></div></a><a class="flex items-center justify-between px-space-sm py-2 rounded-lg text-on-surface-variant hover:bg-surface-container hover:text-on-surface transition-colors" data-path="quotations,-invoices-&amp;-ledger" href="#"><div class="flex items-center gap-space-sm"><span class="material-symbols-outlined text-[20px]">receipt_long</span><span class="font-body-md text-body-md">Quotations &amp; Payments</span></div></a></nav></div><div class="space-y-1"><div class="px-space-sm py-1 font-label-md text-label-md uppercase tracking-wider text-on-surface-variant/70">Governance &amp; System</div><nav class="space-y-1" data-active-classes="bg-primary-container text-on-primary font-bold shadow-[0_2px_8px_rgba(15,46,36,0.15)]"><a class="flex items-center justify-between px-space-sm py-2 rounded-lg text-on-surface-variant hover:bg-surface-container hover:text-on-surface transition-colors" data-path="estate-&amp;-business-settings" href="#"><div class="flex items-center gap-space-sm"><span class="material-symbols-outlined text-[20px]">storefront</span><span class="font-body-md text-body-md">Business Settings</span></div></a><a class="flex items-center justify-between px-space-sm py-2 rounded-lg text-on-surface-variant hover:bg-surface-container hover:text-on-surface transition-colors" data-path="security-&amp;-staff-access-logs" href="#"><div class="flex items-center gap-space-sm"><span class="material-symbols-outlined text-[20px]">shield_person</span><span class="font-body-md text-body-md">Security &amp; Access Logs</span></div></a></nav></div></div><div class="p-space-sm bg-surface-container m-space-sm rounded-xl space-y-space-sm"><div class="flex items-center justify-between"><div class="flex items-center gap-1.5 text-on-surface-variant font-label-md text-label-md uppercase"><span class="material-symbols-outlined text-[16px] text-secondary">location_on</span><span>To be confirmed</span></div><span class="font-label-md text-label-md text-primary font-bold">To be confirmed</span></div><div class="bg-surface-container-lowest px-space-sm py-1.5 rounded-lg flex items-center justify-between"><span class="font-body-sm text-body-sm font-medium text-on-surface truncate">Address to be confirmed</span><span class="material-symbols-outlined text-[16px] text-on-surface-variant">unfold_more</span></div><div class="pt-1 border-t border-surface-variant/40 flex items-center justify-between"><div class="flex items-center gap-space-sm overflow-hidden"><div class="w-8 h-8 rounded-full bg-primary flex items-center justify-center flex-shrink-0"><span class="material-symbols-outlined text-on-primary text-[18px]">person</span></div><div class="flex flex-col truncate"><span class="font-title-sm text-title-sm text-primary font-semibold truncate">Name placeholder</span><span class="font-label-md text-label-md text-on-surface-variant truncate">Admin</span></div></div><button class="p-1.5 rounded-lg text-on-surface-variant hover:bg-surface-container-highest hover:text-on-surface transition-colors" title="Lock &amp; Sign Out" type="button"><span class="material-symbols-outlined text-[18px]">lock</span></button></div></div></div></aside><div class="pl-72"><header class="fixed top-0 left-72 right-0 h-16 bg-surface/85 backdrop-blur-xl z-40 shadow-[0_1px_8px_rgba(0,0,0,0.04)]"><div class="h-16 w-full px-space-lg flex items-center justify-between gap-space-md"><div class="flex-1 max-w-xl"><div class="relative flex items-center"><span class="material-symbols-outlined absolute left-3 text-[20px] text-on-surface-variant">search</span><input class="w-full bg-surface-container-low text-on-surface placeholder:text-on-surface-variant pl-10 pr-4 py-2 rounded-lg font-body-sm text-body-sm outline-none focus:bg-surface-container-lowest transition-colors" placeholder="Search booking ref, customer name, date, phone #..." type="text"/></div></div><div class="flex items-center gap-space-sm"><a class="hidden sm:flex items-center gap-1.5 px-space-sm py-2 rounded-lg text-on-surface-variant hover:bg-surface-container hover:text-on-surface transition-colors font-body-sm text-body-sm" href="#"><span class="material-symbols-outlined text-[18px]">visibility</span><span>Customer Panel</span></a><button class="relative p-2 rounded-lg text-on-surface-variant hover:bg-surface-container hover:text-on-surface transition-colors" type="button"><span class="material-symbols-outlined text-[20px]">notifications</span><span class="absolute top-1.5 right-1.5 w-4 h-4 rounded-full bg-secondary text-on-secondary font-label-md text-label-md flex items-center justify-center">4</span></button><button class="flex items-center gap-1.5 px-space-md py-2 rounded-lg bg-primary text-on-primary hover:bg-primary-container transition-colors shadow-[0_2px_8px_rgba(15,46,36,0.2)]" type="button"><span class="material-symbols-outlined text-[18px]">add</span><span class="font-title-sm text-title-sm font-medium">New Booking Docket</span></button><div class="w-8 h-8 rounded-full bg-primary flex items-center justify-center"><span class="material-symbols-outlined text-on-primary text-[18px]">person</span></div></div></div></header><main class="w-full pt-16 bg-background min-h-screen"><div class="flex flex-col w-full">
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
+      // Sync Sidebar Active State for Menus & Degustation CMS
+      const sidebarLinks = document.querySelectorAll('aside nav a');
+      sidebarLinks.forEach(link => {
+        link.classList.remove('bg-primary-container', 'text-on-primary', 'font-bold', 'shadow-[0_2px_8px_rgba(15,46,36,0.15)]');
+        link.classList.add('text-on-surface-variant');
+        if (link.getAttribute('data-path') === 'menus-&-degustation-cms') {
+          link.classList.add('bg-primary-container', 'text-on-primary', 'font-bold', 'shadow-[0_2px_8px_rgba(15,46,36,0.15)]');
+          link.classList.remove('text-on-surface-variant');
+        }
+      });
+    });
+
+    function toggleStationSwitch(id) {
+      const toggle = document.getElementById(id);
+      const dot = document.getElementById(id + '-dot');
+      if (toggle.dataset.checked === "true") {
+        toggle.dataset.checked = "false";
+        toggle.classList.remove('bg-primary');
+        toggle.classList.add('bg-surface-variant');
+        dot.classList.remove('translate-x-5');
+      } else {
+        toggle.dataset.checked = "true";
+        toggle.classList.remove('bg-surface-variant');
+        toggle.classList.add('bg-primary');
+        dot.classList.add('translate-x-5');
+      }
+    }
+  </script>
+<div class="px-space-lg lg:px-margin py-space-lg space-y-space-lg max-w-[1600px] mx-auto w-full">
+<div class="flex flex-col gap-space-md lg:flex-row lg:items-end lg:justify-between pb-space-sm">
+<div class="space-y-space-xs max-w-4xl">
+<div class="flex items-center gap-2">
+<span class="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full bg-secondary-container text-on-secondary-container font-label-md text-label-md uppercase tracking-wider font-semibold">
+<span class="w-1.5 h-1.5 rounded-full bg-secondary"></span>
+            To be confirmed
+          </span>
+<span class="text-on-surface-variant/40 font-body-sm text-body-sm">/</span>
+<span class="font-label-md text-label-md uppercase tracking-wider text-secondary font-bold">To be confirmed</span>
+</div>
+<h1 class="font-display-lg text-display-md lg:text-display-lg text-primary tracking-tight font-serif">
+          To be confirmed
+        </h1>
+<p class="font-body-lg text-body-lg text-on-surface-variant max-w-3xl leading-relaxed">
+          Address to be confirmed
+        </p>
+</div>
+<div class="flex flex-wrap items-center gap-space-sm self-start lg:self-end">
+<button class="inline-flex items-center gap-2 px-space-md py-2.5 rounded-lg bg-surface-container-high hover:bg-surface-container-highest text-on-surface font-title-sm text-title-sm transition-all shadow-sm" type="button">
+<span class="material-symbols-outlined text-[19px] text-on-surface-variant">picture_as_pdf</span>
+<span>Culinary Deck (PDF)</span>
+</button>
+<button class="inline-flex items-center gap-2 px-space-md py-2.5 rounded-lg bg-surface-container-high hover:bg-surface-container-highest text-on-surface font-title-sm text-title-sm transition-all shadow-sm" type="button">
+<span class="material-symbols-outlined text-[19px] text-on-surface-variant">sync_alt</span>
+<span>Sync POS &amp; Ledger</span>
+</button>
+<button class="inline-flex items-center gap-2 px-space-md py-2.5 rounded-lg bg-primary text-on-primary hover:bg-primary-container font-title-sm text-title-sm shadow-[0_4px_14px_rgba(15,46,36,0.25)] transition-all" type="button">
+<span class="material-symbols-outlined text-[20px] text-secondary-fixed">room_service</span>
+<span class="font-semibold">+ Create New Tier Package</span>
+</button>
+</div>
+</div>
+<div class="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-space-md">
+<div class="bg-surface-container-lowest p-space-md rounded-xl shadow-sm flex flex-col justify-between">
+<div class="flex items-center justify-between">
+<span class="font-label-md text-label-md uppercase tracking-wider text-on-surface-variant">Active Banquet Tiers</span>
+<span class="w-8 h-8 rounded-lg bg-surface-container flex items-center justify-center text-primary">
+<span class="material-symbols-outlined text-[18px]">menu_book</span>
+</span>
+</div>
+<div class="mt-space-sm space-y-0.5">
+<div class="font-display-md text-display-md font-serif text-primary leading-tight">To be confirmed</div>
+<div class="font-body-sm text-body-sm text-on-surface-variant flex items-center gap-1.5">
+<span class="w-1.5 h-1.5 rounded-full bg-secondary"></span>
+<span>To be confirmed</span>
+</div>
+</div>
+<div class="mt-space-md pt-space-xs flex items-center justify-between text-on-surface-variant font-label-md text-label-md bg-surface-container-low px-2 py-1 rounded">
+<span>Capacity Threshold</span>
+<span class="font-bold text-primary">To be confirmed</span>
+</div>
+</div>
+<div class="bg-surface-container-lowest p-space-md rounded-xl shadow-sm flex flex-col justify-between">
+<div class="flex items-center justify-between">
+<span class="font-label-md text-label-md uppercase tracking-wider text-on-surface-variant">Average Per-Head Yield</span>
+<span class="w-8 h-8 rounded-lg bg-surface-container flex items-center justify-center text-secondary">
+<span class="material-symbols-outlined text-[18px]">payments</span>
+</span>
+</div>
+<div class="mt-space-sm space-y-0.5">
+<div class="font-display-md text-display-md font-serif text-primary leading-tight">Price to be confirmed <span class="font-body-sm text-body-sm text-on-surface-variant font-sans">/ head</span></div>
+<div class="font-body-sm text-body-sm text-tertiary-fixed-variant flex items-center gap-1 font-semibold">
+<span class="material-symbols-outlined text-[16px]">trending_up</span>
+<span>To be confirmed</span>
+</div>
+</div>
+<div class="mt-space-md pt-space-xs flex items-center justify-between text-on-surface-variant font-label-md text-label-md bg-surface-container-low px-2 py-1 rounded">
+<span>To be confirmed</span>
+<span class="font-bold text-primary">To be confirmed</span>
+</div>
+</div>
+<div class="bg-surface-container-lowest p-space-md rounded-xl shadow-sm flex flex-col justify-between">
+<div class="flex items-center justify-between">
+<span class="font-label-md text-label-md uppercase tracking-wider text-on-surface-variant">To be confirmed</span>
+<span class="w-8 h-8 rounded-lg bg-surface-container flex items-center justify-center text-primary">
+<span class="material-symbols-outlined text-[18px]">verified</span>
+</span>
+</div>
+<div class="mt-space-sm space-y-0.5">
+<div class="font-display-md text-display-md font-serif text-primary leading-tight">—</div>
+<div class="font-body-sm text-body-sm text-on-surface-variant flex items-center gap-1">
+<span class="text-primary font-semibold">—</span>
+<span>To be confirmed</span>
+</div>
+</div>
+<div class="mt-space-md pt-space-xs flex items-center justify-between text-on-surface-variant font-label-md text-label-md bg-surface-container-low px-2 py-1 rounded">
+<span>To be confirmed</span>
+<span class="font-bold text-primary">—</span>
+</div>
+</div>
+<div class="bg-surface-container-lowest p-space-md rounded-xl shadow-sm flex flex-col justify-between">
+<div class="flex items-center justify-between">
+<span class="font-label-md text-label-md uppercase tracking-wider text-on-surface-variant">Feature to be confirmed</span>
+<span class="w-8 h-8 rounded-lg bg-surface-container flex items-center justify-center text-secondary">
+<span class="material-symbols-outlined text-[18px]">outdoor_grill</span>
+</span>
+</div>
+<div class="mt-space-sm space-y-0.5">
+<div class="font-display-md text-display-md font-serif text-primary leading-tight">—</div>
+<div class="font-body-sm text-body-sm text-on-surface-variant flex items-center gap-1">
+<span class="font-semibold text-secondary">To be confirmed</span>
+<span>To be confirmed</span>
+</div>
+</div>
+<div class="mt-space-md pt-space-xs flex items-center justify-between text-on-surface-variant font-label-md text-label-md bg-surface-container-low px-2 py-1 rounded">
+<span>Feature to be confirmed</span>
+<span class="font-bold text-primary">To be confirmed</span>
+</div>
+</div>
+</div>
+<div class="bg-surface-container-lowest p-space-md rounded-xl shadow-sm space-y-space-md">
+<div class="flex items-center gap-2 overflow-x-auto pb-1 scrollbar-none">
+<button class="px-space-md py-2 rounded-lg bg-primary-container text-on-primary font-title-sm text-title-sm whitespace-nowrap shadow-sm" type="button">
+          To be confirmed
+        </button>
+<button class="px-space-md py-2 rounded-lg text-on-surface-variant hover:bg-surface-container hover:text-on-surface font-title-sm text-title-sm whitespace-nowrap transition-colors" type="button">
+          To be confirmed
+        </button>
+<button class="px-space-md py-2 rounded-lg text-on-surface-variant hover:bg-surface-container hover:text-on-surface font-title-sm text-title-sm whitespace-nowrap transition-colors" type="button">
+          Menu item to be confirmed
+        </button>
+<button class="px-space-md py-2 rounded-lg text-on-surface-variant hover:bg-surface-container hover:text-on-surface font-title-sm text-title-sm whitespace-nowrap transition-colors flex items-center gap-1.5" type="button">
+<span>Menu item to be confirmed</span>
+<span class="px-1.5 py-0.5 rounded-full bg-secondary-container text-on-secondary-container font-label-md text-label-md">12</span>
+</button>
+<button class="px-space-md py-2 rounded-lg text-on-surface-variant hover:bg-surface-container hover:text-on-surface font-title-sm text-title-sm whitespace-nowrap transition-colors" type="button">
+          Dietary &amp; Spice Profiles
+        </button>
+<button class="px-space-md py-2 rounded-lg text-on-surface-variant hover:bg-surface-container hover:text-on-surface font-title-sm text-title-sm whitespace-nowrap transition-colors" type="button">
+          Archived Menus
+        </button>
+</div>
+<div class="flex flex-col md:flex-row items-stretch md:items-center justify-between gap-space-sm pt-space-xs">
+<div class="relative flex-1 max-w-xl">
+<span class="material-symbols-outlined absolute left-3 top-2.5 text-[20px] text-on-surface-variant">search</span>
+<input class="w-full bg-surface-container-low text-on-surface placeholder:text-on-surface-variant/70 pl-10 pr-4 py-2.5 rounded-lg font-body-sm text-body-sm outline-none focus:bg-surface-container-lowest shadow-inner transition-colors" placeholder="Description to be confirmed." type="text"/>
+</div>
+<div class="flex flex-wrap items-center gap-space-sm">
+<div class="flex items-center gap-1.5 bg-surface-container-low px-3 py-2 rounded-lg">
+<span class="material-symbols-outlined text-[18px] text-on-surface-variant">domain</span>
+<select class="bg-transparent text-on-surface font-body-sm text-body-sm outline-none cursor-pointer">
+<option>To be confirmed</option>
+<option>To be confirmed</option>
+<option>To be confirmed</option>
+<option>To be confirmed</option>
+</select>
+</div>
+<div class="flex items-center gap-1.5 bg-surface-container-low px-3 py-2 rounded-lg">
+<span class="material-symbols-outlined text-[18px] text-on-surface-variant">filter_list</span>
+<select class="bg-transparent text-on-surface font-body-sm text-body-sm outline-none cursor-pointer">
+<option>Price: High to Low</option>
+<option>Price: Low to High</option>
+<option>Most Booked First</option>
+<option>Recently Ratified</option>
+</select>
+</div>
+<div class="flex items-center gap-1.5 bg-surface-container-low px-3 py-2 rounded-lg">
+<span class="w-2 h-2 rounded-full bg-tertiary-fixed-dim"></span>
+<span class="font-body-sm text-body-sm text-on-surface font-medium">To be confirmed</span>
+</div>
+</div>
+</div>
+</div>
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-space-lg items-start">
+<div class="lg:col-span-8 space-y-space-lg">
+<div class="bg-surface-container-lowest rounded-xl shadow-md overflow-hidden transition-all duration-300 hover:shadow-lg">
+<div class="p-space-lg bg-surface-container-low space-y-space-sm">
+<div class="flex flex-wrap items-center justify-between gap-space-sm">
+<div class="flex items-center gap-space-xs">
+<span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-secondary-container text-on-secondary-container font-label-md text-label-md uppercase tracking-wider font-bold">
+<span class="material-symbols-outlined text-[15px]">stars</span>
+                  To be confirmed
+                </span>
+<span class="inline-flex items-center px-2.5 py-1 rounded-full bg-surface-container text-on-surface-variant font-label-md text-label-md uppercase tracking-wider font-semibold">
+                  Package name to be confirmed
+                </span>
+</div>
+<div class="flex items-center gap-2">
+<span class="font-label-md text-label-md uppercase tracking-wider text-on-surface-variant">Min Headcount:</span>
+<span class="font-tabular-data text-tabular-data font-bold text-primary">—</span>
+</div>
+</div>
+<div class="flex flex-col sm:flex-row sm:items-baseline justify-between gap-space-xs">
+<div>
+<h2 class="font-headline-lg text-headline-lg font-serif text-primary">
+                  To be confirmed
+                </h2>
+<div class="flex items-center gap-2 mt-1 text-on-surface-variant font-body-sm text-body-sm">
+<span class="material-symbols-outlined text-[17px] text-secondary">location_city</span>
+<span>To be confirmed <strong class="text-primary font-medium">To be confirmed</strong></span>
+</div>
+</div>
+<div class="text-left sm:text-right">
+<div class="font-display-md text-display-md font-serif text-primary leading-none">
+                  Price to be confirmed <span class="font-body-sm text-body-sm font-sans text-on-surface-variant">/ head</span>
+</div>
+<span class="font-label-md text-label-md text-on-surface-variant">To be confirmed</span>
+</div>
+</div>
+</div>
+<div class="p-space-lg space-y-space-md">
+<div class="bg-surface-container-low/60 p-space-md rounded-lg space-y-space-xs">
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-2">
+<span class="w-6 h-6 rounded-full bg-secondary-fixed text-on-secondary-fixed flex items-center justify-center font-label-md text-label-md font-bold">01</span>
+<span class="font-title-sm text-title-sm font-serif text-primary font-bold uppercase tracking-wider">To be confirmed</span>
+</div>
+<span class="font-label-md text-label-md text-on-surface-variant">To be confirmed</span>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-space-sm pt-1">
+<div class="p-2.5 rounded bg-surface-container-lowest shadow-sm flex items-start gap-2">
+<span class="material-symbols-outlined text-[18px] text-secondary mt-0.5">local_cafe</span>
+<div>
+<div class="font-title-sm text-title-sm text-primary font-semibold">Menu item to be confirmed</div>
+<div class="font-body-sm text-body-sm text-on-surface-variant">Menu item to be confirmed</div>
+</div>
+</div>
+<div class="p-2.5 rounded bg-surface-container-lowest shadow-sm flex items-start gap-2">
+<span class="material-symbols-outlined text-[18px] text-secondary mt-0.5">local_bar</span>
+<div>
+<div class="font-title-sm text-title-sm text-primary font-semibold">Menu item to be confirmed</div>
+<div class="font-body-sm text-body-sm text-on-surface-variant">Menu item to be confirmed</div>
+</div>
+</div>
+<div class="p-2.5 rounded bg-surface-container-lowest shadow-sm flex items-start gap-2">
+<span class="material-symbols-outlined text-[18px] text-secondary mt-0.5">spa</span>
+<div>
+<div class="font-title-sm text-title-sm text-primary font-semibold">Menu item to be confirmed</div>
+<div class="font-body-sm text-body-sm text-on-surface-variant">Menu item to be confirmed</div>
+</div>
+</div>
+</div>
+</div>
+<div class="bg-surface-container-low/60 p-space-md rounded-lg space-y-space-xs">
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-2">
+<span class="w-6 h-6 rounded-full bg-secondary-fixed text-on-secondary-fixed flex items-center justify-center font-label-md text-label-md font-bold">02</span>
+<span class="font-title-sm text-title-sm font-serif text-primary font-bold uppercase tracking-wider">Menu item to be confirmed</span>
+</div>
+<span class="font-label-md text-label-md text-on-surface-variant">To be confirmed</span>
+</div>
+<div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-space-sm pt-1">
+<div class="p-2.5 rounded bg-surface-container-lowest shadow-sm">
+<div class="font-title-sm text-title-sm text-primary font-semibold">Menu item to be confirmed</div>
+<div class="font-body-sm text-body-sm text-on-surface-variant">Menu item to be confirmed</div>
+</div>
+<div class="p-2.5 rounded bg-surface-container-lowest shadow-sm">
+<div class="font-title-sm text-title-sm text-primary font-semibold">Menu item to be confirmed</div>
+<div class="font-body-sm text-body-sm text-on-surface-variant">Menu item to be confirmed</div>
+</div>
+<div class="p-2.5 rounded bg-surface-container-lowest shadow-sm">
+<div class="font-title-sm text-title-sm text-primary font-semibold">Menu item to be confirmed</div>
+<div class="font-body-sm text-body-sm text-on-surface-variant">Menu item to be confirmed</div>
+</div>
+<div class="p-2.5 rounded bg-surface-container-lowest shadow-sm">
+<div class="font-title-sm text-title-sm text-primary font-semibold">Menu item to be confirmed</div>
+<div class="font-body-sm text-body-sm text-on-surface-variant">Menu item to be confirmed</div>
+</div>
+</div>
+</div>
+<div class="bg-surface-container-low/60 p-space-md rounded-lg space-y-space-xs">
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-2">
+<span class="w-6 h-6 rounded-full bg-secondary-fixed text-on-secondary-fixed flex items-center justify-center font-label-md text-label-md font-bold">03</span>
+<span class="font-title-sm text-title-sm font-serif text-primary font-bold uppercase tracking-wider">To be confirmed</span>
+</div>
+<span class="inline-flex items-center gap-1 font-label-md text-label-md text-secondary font-bold">
+<span class="material-symbols-outlined text-[15px]">diamond</span>
+                  To be confirmed
+                </span>
+</div>
+<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-space-sm pt-1">
+<div class="p-3 rounded bg-surface-container-lowest shadow-sm flex flex-col justify-between">
+<div>
+<div class="flex items-center justify-between">
+<span class="font-title-sm text-title-sm text-primary font-bold">Menu item to be confirmed</span>
+<span class="px-1.5 py-0.5 rounded bg-surface-container font-label-md text-label-md text-secondary">Menu item to be confirmed</span>
+</div>
+<div class="font-body-sm text-body-sm text-on-surface-variant mt-1">Menu item to be confirmed</div>
+</div>
+<div class="mt-2 text-on-surface-variant font-label-md text-label-md">To be confirmed</div>
+</div>
+<div class="p-3 rounded bg-surface-container-lowest shadow-sm flex flex-col justify-between ring-1 ring-secondary/40">
+<div>
+<div class="flex items-center justify-between">
+<span class="font-title-sm text-title-sm text-primary font-bold">To be confirmed</span>
+<span class="px-1.5 py-0.5 rounded bg-secondary-container text-on-secondary-container font-label-md text-label-md font-semibold">Menu item to be confirmed</span>
+</div>
+<div class="font-body-sm text-body-sm text-on-surface-variant mt-1">Menu item to be confirmed</div>
+</div>
+<div class="mt-2 text-secondary font-label-md text-label-md font-bold">Selected for Inspector →</div>
+</div>
+<div class="p-3 rounded bg-surface-container-lowest shadow-sm flex flex-col justify-between">
+<div>
+<div class="flex items-center justify-between">
+<span class="font-title-sm text-title-sm text-primary font-bold">Menu item to be confirmed</span>
+<span class="px-1.5 py-0.5 rounded bg-surface-container font-label-md text-label-md text-on-surface-variant">Menu item to be confirmed</span>
+</div>
+<div class="font-body-sm text-body-sm text-on-surface-variant mt-1">Menu item to be confirmed</div>
+</div>
+<div class="mt-2 text-on-surface-variant font-label-md text-label-md">Menu item to be confirmed</div>
+</div>
+<div class="p-3 rounded bg-surface-container-lowest shadow-sm flex flex-col justify-between">
+<div>
+<div class="flex items-center justify-between">
+<span class="font-title-sm text-title-sm text-primary font-bold">Menu item to be confirmed</span>
+<span class="px-1.5 py-0.5 rounded bg-surface-container font-label-md text-label-md text-on-surface-variant">Menu item to be confirmed</span>
+</div>
+<div class="font-body-sm text-body-sm text-on-surface-variant mt-1">To be confirmed</div>
+</div>
+<div class="mt-2 text-on-surface-variant font-label-md text-label-md">Menu item to be confirmed</div>
+</div>
+<div class="p-3 rounded bg-surface-container-lowest shadow-sm flex flex-col justify-between">
+<div>
+<div class="flex items-center justify-between">
+<span class="font-title-sm text-title-sm text-primary font-bold">Menu item to be confirmed</span>
+<span class="px-1.5 py-0.5 rounded bg-surface-container font-label-md text-label-md text-on-surface-variant">Menu item to be confirmed</span>
+</div>
+<div class="font-body-sm text-body-sm text-on-surface-variant mt-1">Menu item to be confirmed</div>
+</div>
+<div class="mt-2 text-on-surface-variant font-label-md text-label-md">Menu item to be confirmed</div>
+</div>
+<div class="p-3 rounded bg-surface-container-lowest shadow-sm flex flex-col justify-between">
+<div>
+<div class="flex items-center justify-between">
+<span class="font-title-sm text-title-sm text-primary font-bold">Menu item to be confirmed</span>
+<span class="px-1.5 py-0.5 rounded bg-surface-container font-label-md text-label-md text-on-surface-variant">Menu item to be confirmed</span>
+</div>
+<div class="font-body-sm text-body-sm text-on-surface-variant mt-1">Menu item to be confirmed</div>
+</div>
+<div class="mt-2 text-on-surface-variant font-label-md text-label-md">Menu item to be confirmed</div>
+</div>
+</div>
+</div>
+<div class="bg-surface-container-low/60 p-space-md rounded-lg space-y-space-xs">
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-2">
+<span class="w-6 h-6 rounded-full bg-secondary-fixed text-on-secondary-fixed flex items-center justify-center font-label-md text-label-md font-bold">04</span>
+<span class="font-title-sm text-title-sm font-serif text-primary font-bold uppercase tracking-wider">To be confirmed</span>
+</div>
+<span class="font-label-md text-label-md text-on-surface-variant">To be confirmed</span>
+</div>
+<div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-space-sm pt-1">
+<div class="p-2.5 rounded bg-surface-container-lowest shadow-sm">
+<div class="font-title-sm text-title-sm text-primary font-semibold">Menu item to be confirmed</div>
+<div class="font-body-sm text-body-sm text-on-surface-variant">Menu item to be confirmed</div>
+</div>
+<div class="p-2.5 rounded bg-surface-container-lowest shadow-sm">
+<div class="font-title-sm text-title-sm text-primary font-semibold">Menu item to be confirmed</div>
+<div class="font-body-sm text-body-sm text-on-surface-variant">Menu item to be confirmed</div>
+</div>
+<div class="p-2.5 rounded bg-surface-container-lowest shadow-sm">
+<div class="font-title-sm text-title-sm text-primary font-semibold">Menu item to be confirmed</div>
+<div class="font-body-sm text-body-sm text-on-surface-variant">Menu item to be confirmed</div>
+</div>
+<div class="p-2.5 rounded bg-surface-container-lowest shadow-sm">
+<div class="font-title-sm text-title-sm text-primary font-semibold">Menu item to be confirmed</div>
+<div class="font-body-sm text-body-sm text-on-surface-variant">Menu item to be confirmed</div>
+</div>
+</div>
+</div>
+<div class="flex flex-wrap items-center gap-space-sm pt-2 text-on-surface-variant font-body-sm text-body-sm">
+<span class="font-bold text-primary">Inclusions:</span>
+<span class="inline-flex items-center gap-1 bg-surface-container px-2 py-0.5 rounded text-on-surface">
+<span class="material-symbols-outlined text-[16px] text-secondary">check</span> To be confirmed
+              </span>
+<span class="inline-flex items-center gap-1 bg-surface-container px-2 py-0.5 rounded text-on-surface">
+<span class="material-symbols-outlined text-[16px] text-secondary">check</span> Feature to be confirmed
+              </span>
+<span class="inline-flex items-center gap-1 bg-surface-container px-2 py-0.5 rounded text-on-surface">
+<span class="material-symbols-outlined text-[16px] text-secondary">check</span> Feature to be confirmed
+              </span>
+</div>
+<div class="pt-space-sm flex flex-wrap items-center justify-between gap-space-sm">
+<div class="flex items-center gap-2">
+<button class="px-space-md py-2 rounded-lg bg-primary text-on-primary font-title-sm text-title-sm hover:bg-primary-container transition-colors shadow-sm flex items-center gap-1.5" type="button">
+<span class="material-symbols-outlined text-[18px]">edit_note</span>
+<span>Edit Dish Lineup</span>
+</button>
+<button class="px-space-md py-2 rounded-lg bg-surface-container hover:bg-surface-container-high text-on-surface font-title-sm text-title-sm transition-colors flex items-center gap-1.5" type="button">
+<span class="material-symbols-outlined text-[18px]">content_copy</span>
+<span>Clone Tier</span>
+</button>
+<button class="px-space-md py-2 rounded-lg bg-surface-container hover:bg-surface-container-high text-on-surface font-title-sm text-title-sm transition-colors flex items-center gap-1.5" type="button">
+<span class="material-symbols-outlined text-[18px]">tune</span>
+<span>Configure Live Add-ons</span>
+</button>
+</div>
+<button class="px-space-md py-2 rounded-lg bg-surface-container-high hover:bg-surface-container-highest text-secondary font-title-sm text-title-sm font-semibold transition-colors flex items-center gap-1.5" type="button">
+<span class="material-symbols-outlined text-[18px]">print</span>
+<span>Print Tasting Sheet</span>
+</button>
+</div>
+</div>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-space-lg">
+<div class="bg-surface-container-lowest rounded-xl shadow-md p-space-lg flex flex-col justify-between space-y-space-md hover:shadow-lg transition-all">
+<div class="space-y-space-xs">
+<div class="flex items-center justify-between">
+<span class="px-2.5 py-0.5 rounded-full bg-secondary-container text-on-secondary-container font-label-md text-label-md uppercase tracking-wider font-bold">
+                  Package name to be confirmed
+                </span>
+<span class="font-tabular-data text-tabular-data text-on-surface-variant font-medium">To be confirmed</span>
+</div>
+<h3 class="font-headline-md text-headline-md font-serif text-primary">
+                Name placeholder
+              </h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant">
+                To be confirmed <strong class="text-primary font-medium">To be confirmed</strong> Menu item to be confirmed
+              </p>
+<div class="pt-2">
+<div class="font-display-md text-display-md font-serif text-primary leading-none">
+                  Price to be confirmed <span class="font-body-sm text-body-sm font-sans text-on-surface-variant">/ head</span>
+</div>
+</div>
+<div class="pt-space-sm space-y-1.5">
+<div class="font-label-md text-label-md uppercase tracking-wider text-on-surface-variant font-bold">To be confirmed</div>
+<div class="flex flex-wrap gap-1.5">
+<span class="px-2 py-1 rounded bg-surface-container text-primary font-body-sm text-body-sm">Menu item to be confirmed</span>
+<span class="px-2 py-1 rounded bg-surface-container text-primary font-body-sm text-body-sm">Menu item to be confirmed</span>
+<span class="px-2 py-1 rounded bg-surface-container text-primary font-body-sm text-body-sm">Menu item to be confirmed</span>
+<span class="px-2 py-1 rounded bg-surface-container text-primary font-body-sm text-body-sm">Name placeholder</span>
+<span class="px-2 py-1 rounded bg-surface-container text-primary font-body-sm text-body-sm">Menu item to be confirmed</span>
+</div>
+</div>
+</div>
+<div class="pt-space-sm flex items-center gap-2">
+<button class="flex-1 py-2 rounded-lg bg-primary text-on-primary font-title-sm text-title-sm text-center hover:bg-primary-container transition-colors" type="button">
+                Edit Dish Lineup
+              </button>
+<button class="p-2 rounded-lg bg-surface-container hover:bg-surface-container-high text-on-surface transition-colors" title="Clone Tier" type="button">
+<span class="material-symbols-outlined text-[18px]">content_copy</span>
+</button>
+<button class="p-2 rounded-lg bg-surface-container hover:bg-surface-container-high text-on-surface transition-colors" title="Configure Add-ons" type="button">
+<span class="material-symbols-outlined text-[18px]">tune</span>
+</button>
+</div>
+</div>
+<div class="bg-surface-container-lowest rounded-xl shadow-md p-space-lg flex flex-col justify-between space-y-space-md hover:shadow-lg transition-all">
+<div class="space-y-space-xs">
+<div class="flex items-center justify-between">
+<span class="px-2.5 py-0.5 rounded-full bg-surface-container-high text-on-surface font-label-md text-label-md uppercase tracking-wider font-bold">
+                  To be confirmed
+                </span>
+<span class="font-tabular-data text-tabular-data text-on-surface-variant font-medium">To be confirmed</span>
+</div>
+<h3 class="font-headline-md text-headline-md font-serif text-primary">
+                To be confirmed
+              </h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant">
+                To be confirmed <strong class="text-primary font-medium">To be confirmed</strong>
+</p>
+<div class="pt-2">
+<div class="font-display-md text-display-md font-serif text-primary leading-none">
+                  Price to be confirmed <span class="font-body-sm text-body-sm font-sans text-on-surface-variant">/ head</span>
+</div>
+</div>
+<div class="pt-space-sm space-y-1.5">
+<div class="font-label-md text-label-md uppercase tracking-wider text-on-surface-variant font-bold">Refined Matinee Stations:</div>
+<div class="flex flex-wrap gap-1.5">
+<span class="px-2 py-1 rounded bg-surface-container text-primary font-body-sm text-body-sm">Menu item to be confirmed</span>
+<span class="px-2 py-1 rounded bg-surface-container text-primary font-body-sm text-body-sm">Menu item to be confirmed</span>
+<span class="px-2 py-1 rounded bg-surface-container text-primary font-body-sm text-body-sm">Menu item to be confirmed</span>
+<span class="px-2 py-1 rounded bg-surface-container text-primary font-body-sm text-body-sm">Menu item to be confirmed</span>
+<span class="px-2 py-1 rounded bg-surface-container text-primary font-body-sm text-body-sm">Menu item to be confirmed</span>
+</div>
+</div>
+</div>
+<div class="pt-space-sm flex items-center gap-2">
+<button class="flex-1 py-2 rounded-lg bg-primary text-on-primary font-title-sm text-title-sm text-center hover:bg-primary-container transition-colors" type="button">
+                Edit Dish Lineup
+              </button>
+<button class="p-2 rounded-lg bg-surface-container hover:bg-surface-container-high text-on-surface transition-colors" title="Clone Tier" type="button">
+<span class="material-symbols-outlined text-[18px]">content_copy</span>
+</button>
+<button class="p-2 rounded-lg bg-surface-container hover:bg-surface-container-high text-on-surface transition-colors" title="Configure Add-ons" type="button">
+<span class="material-symbols-outlined text-[18px]">tune</span>
+</button>
+</div>
+</div>
+</div>
+<div class="bg-surface-container-lowest rounded-xl shadow-md p-space-lg space-y-space-md">
+<div class="flex flex-col sm:flex-row sm:items-center justify-between gap-space-sm pb-space-xs">
+<div>
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-[22px] text-secondary">outdoor_grill</span>
+<h3 class="font-headline-md text-headline-md font-serif text-primary">Artisanal Live Stations Grid</h3>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Description to be confirmed.</p>
+</div>
+<span class="px-3 py-1 rounded-full bg-surface-container text-primary font-label-md text-label-md font-semibold">To be confirmed</span>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-space-md">
+<div class="p-space-md rounded-xl bg-surface-container-low flex flex-col justify-between space-y-space-sm">
+<div class="flex items-start justify-between gap-space-sm">
+<div>
+<div class="font-title-sm text-title-sm font-serif font-bold text-primary">Menu item to be confirmed</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant mt-0.5">Description to be confirmed.</p>
+</div>
+<button class="relative inline-flex h-6 w-11 flex-shrink-0 cursor-pointer rounded-full bg-primary transition-colors duration-200 ease-in-out" data-checked="true" id="toggle-station-1" onclick="toggleStationSwitch('toggle-station-1')" type="button">
+<span class="pointer-events-none inline-block h-5 w-5 transform translate-x-5 rounded-full bg-surface-container-lowest shadow ring-0 transition duration-200 ease-in-out mt-0.5 ml-0.5" id="toggle-station-1-dot"></span>
+</button>
+</div>
+<div class="flex items-center justify-between pt-space-xs font-label-md text-label-md">
+<span class="text-tertiary-fixed-variant font-bold bg-surface-container-lowest px-2 py-0.5 rounded">To be confirmed</span>
+<span class="text-secondary font-semibold">Price to be confirmed</span>
+</div>
+</div>
+<div class="p-space-md rounded-xl bg-surface-container-low flex flex-col justify-between space-y-space-sm">
+<div class="flex items-start justify-between gap-space-sm">
+<div>
+<div class="font-title-sm text-title-sm font-serif font-bold text-primary">Menu item to be confirmed</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant mt-0.5">Description to be confirmed.</p>
+</div>
+<button class="relative inline-flex h-6 w-11 flex-shrink-0 cursor-pointer rounded-full bg-primary transition-colors duration-200 ease-in-out" data-checked="true" id="toggle-station-2" onclick="toggleStationSwitch('toggle-station-2')" type="button">
+<span class="pointer-events-none inline-block h-5 w-5 transform translate-x-5 rounded-full bg-surface-container-lowest shadow ring-0 transition duration-200 ease-in-out mt-0.5 ml-0.5" id="toggle-station-2-dot"></span>
+</button>
+</div>
+<div class="flex items-center justify-between pt-space-xs font-label-md text-label-md">
+<span class="text-on-surface-variant font-medium">Seasonally Active</span>
+<span class="text-secondary font-bold text-title-sm">Price to be confirmed</span>
+</div>
+</div>
+<div class="p-space-md rounded-xl bg-surface-container-low flex flex-col justify-between space-y-space-sm">
+<div class="flex items-start justify-between gap-space-sm">
+<div>
+<div class="font-title-sm text-title-sm font-serif font-bold text-primary">Menu item to be confirmed</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant mt-0.5">To be confirmed</p>
+</div>
+<button class="relative inline-flex h-6 w-11 flex-shrink-0 cursor-pointer rounded-full bg-primary transition-colors duration-200 ease-in-out" data-checked="true" id="toggle-station-3" onclick="toggleStationSwitch('toggle-station-3')" type="button">
+<span class="pointer-events-none inline-block h-5 w-5 transform translate-x-5 rounded-full bg-surface-container-lowest shadow ring-0 transition duration-200 ease-in-out mt-0.5 ml-0.5" id="toggle-station-3-dot"></span>
+</button>
+</div>
+<div class="flex items-center justify-between pt-space-xs font-label-md text-label-md">
+<span class="text-on-surface-variant font-medium">Menu item to be confirmed</span>
+<span class="text-secondary font-bold text-title-sm">Price to be confirmed</span>
+</div>
+</div>
+<div class="p-space-md rounded-xl bg-surface-container-low flex flex-col justify-between space-y-space-sm">
+<div class="flex items-start justify-between gap-space-sm">
+<div>
+<div class="font-title-sm text-title-sm font-serif font-bold text-primary">Menu item to be confirmed</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant mt-0.5">Description to be confirmed.</p>
+</div>
+<button class="relative inline-flex h-6 w-11 flex-shrink-0 cursor-pointer rounded-full bg-surface-variant transition-colors duration-200 ease-in-out" data-checked="false" id="toggle-station-4" onclick="toggleStationSwitch('toggle-station-4')" type="button">
+<span class="pointer-events-none inline-block h-5 w-5 transform translate-x-0 rounded-full bg-surface-container-lowest shadow ring-0 transition duration-200 ease-in-out mt-0.5 ml-0.5" id="toggle-station-4-dot"></span>
+</button>
+</div>
+<div class="flex items-center justify-between pt-space-xs font-label-md text-label-md">
+<span class="text-on-surface-variant font-medium">Optional Host Upgrade</span>
+<span class="text-secondary font-bold text-title-sm">Price to be confirmed</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="lg:col-span-4 space-y-space-lg">
+<div class="bg-surface-container-lowest rounded-xl shadow-md overflow-hidden">
+<div class="p-space-md bg-primary text-on-primary flex items-center justify-between">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-[20px] text-secondary-fixed">skillet</span>
+<span class="font-title-sm text-title-sm font-serif uppercase tracking-wider font-semibold">Dish Nuance Inspector</span>
+</div>
+<span class="px-2 py-0.5 rounded bg-primary-container font-label-md text-label-md text-secondary-fixed">Live Focus</span>
+</div>
+<div class="relative h-44 w-full bg-cover bg-center" style="background-image: url('../../../media/04_website_ready/banquet-hall/hall_sofa-aisle-central-chandelier.jpg')">
+<div class="absolute inset-0 bg-gradient-to-t from-primary/90 via-primary/30 to-transparent"></div>
+<div class="absolute bottom-3 left-4 right-4 text-on-primary">
+<div class="font-headline-sm text-headline-sm font-serif leading-tight">To be confirmed</div>
+<div class="font-label-md text-label-md text-secondary-fixed tracking-wide uppercase">To be confirmed</div>
+</div>
+</div>
+<div class="p-space-md space-y-space-md">
+<div class="grid grid-cols-2 gap-space-sm bg-surface-container-low p-space-sm rounded-lg">
+<div>
+<span class="font-label-md text-label-md uppercase tracking-wider text-on-surface-variant block">Preparation Cycle</span>
+<span class="font-tabular-data text-tabular-data font-bold text-primary">To be confirmed</span>
+</div>
+<div>
+<span class="font-label-md text-label-md uppercase tracking-wider text-on-surface-variant block">Meat-to-Rice Ratio</span>
+<span class="font-tabular-data text-tabular-data font-bold text-primary">To be confirmed</span>
+</div>
+<div>
+<span class="font-label-md text-label-md uppercase tracking-wider text-on-surface-variant block">Grain Specification</span>
+<span class="font-tabular-data text-tabular-data font-bold text-primary">To be confirmed</span>
+</div>
+<div>
+<span class="font-label-md text-label-md uppercase tracking-wider text-on-surface-variant block">Fat Medium</span>
+<span class="font-tabular-data text-tabular-data font-bold text-primary">To be confirmed</span>
+</div>
+</div>
+<div class="space-y-space-sm">
+<span class="font-label-md text-label-md uppercase tracking-wider text-primary font-bold block">Spice &amp; Profile Calibration</span>
+<div class="space-y-1">
+<div class="flex items-center justify-between font-body-sm text-body-sm">
+<span class="text-on-surface">Heat Calibration</span>
+<span class="font-bold text-primary">To be confirmed</span>
+</div>
+<div class="h-2 w-full bg-surface-container rounded-full overflow-hidden flex">
+<div class="bg-secondary h-full rounded-full" style="width: 60%;"></div>
+</div>
+</div>
+<div class="space-y-1">
+<div class="flex items-center justify-between font-body-sm text-body-sm">
+<span class="text-on-surface">Saffron Aroma Infusion</span>
+<span class="font-bold text-primary">Level 4 / 5 (Signature)</span>
+</div>
+<div class="h-2 w-full bg-surface-container rounded-full overflow-hidden flex">
+<div class="bg-secondary h-full rounded-full" style="width: 80%;"></div>
+</div>
+</div>
+<div class="space-y-1">
+<div class="flex items-center justify-between font-body-sm text-body-sm">
+<span class="text-on-surface">Desi Ghee Richness</span>
+<span class="font-bold text-primary">Level 4 / 5 (Ceremonial)</span>
+</div>
+<div class="h-2 w-full bg-surface-container rounded-full overflow-hidden flex">
+<div class="bg-secondary h-full rounded-full" style="width: 80%;"></div>
+</div>
+</div>
+</div>
+<div class="space-y-space-xs pt-space-xs">
+<div class="flex items-center justify-between">
+<span class="font-label-md text-label-md uppercase tracking-wider text-on-surface-variant font-bold">Portion Cost Economics</span>
+<span class="font-label-md text-label-md text-tertiary-fixed-variant font-bold">To be confirmed</span>
+</div>
+<div class="space-y-1 font-tabular-data text-tabular-data text-body-sm">
+<div class="flex justify-between py-1 bg-surface-container-low px-2 rounded">
+<span class="text-on-surface">To be confirmed</span>
+<span class="font-bold text-primary">Price to be confirmed</span>
+</div>
+<div class="flex justify-between py-1 bg-surface-container-low px-2 rounded">
+<span class="text-on-surface">Menu item to be confirmed</span>
+<span class="font-bold text-primary">Price to be confirmed</span>
+</div>
+<div class="flex justify-between py-1 bg-surface-container-low px-2 rounded">
+<span class="text-on-surface">Menu item to be confirmed</span>
+<span class="font-bold text-primary">Price to be confirmed</span>
+</div>
+<div class="flex justify-between py-1.5 px-2 bg-secondary-container rounded text-on-secondary-container font-bold">
+<span>Total Yield Portion Cost:</span>
+<span>Price to be confirmed</span>
+</div>
+</div>
+</div>
+<div class="bg-surface-container-high/60 p-space-sm rounded-lg flex items-center justify-between">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-[20px] text-primary">soup_kitchen</span>
+<div>
+<div class="font-title-sm text-title-sm text-primary font-bold">To be confirmed</div>
+<div class="font-body-sm text-body-sm text-on-surface-variant">Address to be confirmed</div>
+</div>
+</div>
+<span class="w-2.5 h-2.5 rounded-full bg-tertiary-fixed-dim" title="Station Active"></span>
+</div>
+</div>
+</div>
+<div class="bg-surface-container-lowest rounded-xl shadow-md p-space-md space-y-space-md">
+<div class="flex items-center justify-between pb-space-xs">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-[20px] text-secondary">assignment_turned_in</span>
+<h3 class="font-title-md text-title-md font-serif text-primary font-bold">To be confirmed</h3>
+</div>
+<span class="w-2 h-2 rounded-full bg-secondary"></span>
+</div>
+<div class="p-space-sm rounded-lg bg-surface-container-low space-y-2">
+<div class="flex items-center justify-between">
+<span class="px-2 py-0.5 rounded-full bg-tertiary-fixed text-on-tertiary-fixed font-label-md text-label-md uppercase tracking-wider font-bold">
+                Ratified &amp; Signed
+              </span>
+<span class="font-tabular-data text-tabular-data font-bold text-primary">To be confirmed</span>
+</div>
+<div>
+<div class="font-title-sm text-title-sm text-primary font-bold">Name placeholder</div>
+<div class="font-body-sm text-body-sm text-on-surface-variant">To be confirmed</div>
+<div class="font-label-md text-label-md text-on-surface-variant mt-0.5">To be confirmed</div>
+</div>
+<div class="bg-surface-container-lowest p-2 rounded text-body-sm text-on-surface-variant space-y-1">
+<div class="font-semibold text-primary">Ratification Note:</div>
+<p class="leading-relaxed text-body-sm">To be confirmed</p>
+<div class="font-label-md text-label-md text-secondary font-bold pt-1">Name placeholder</div>
+</div>
+</div>
+<div class="p-space-sm rounded-lg bg-surface-container-low space-y-2">
+<div class="flex items-center justify-between">
+<span class="px-2 py-0.5 rounded-full bg-secondary-container text-on-secondary-container font-label-md text-label-md uppercase tracking-wider font-bold">
+                To be confirmed
+              </span>
+<span class="font-label-md text-label-md text-on-surface-variant">To be confirmed</span>
+</div>
+<div>
+<div class="font-title-sm text-title-sm text-primary font-bold">Sample booking (placeholder)</div>
+<div class="font-body-sm text-body-sm text-on-surface-variant">To be confirmed</div>
+<div class="font-label-md text-label-md text-on-surface-variant mt-0.5">Address to be confirmed</div>
+</div>
+<div class="flex items-center justify-between bg-surface-container-lowest p-2 rounded text-body-sm">
+<div class="flex items-center gap-1.5 text-on-surface">
+<span class="material-symbols-outlined text-[17px] text-on-surface-variant">group</span>
+<span>To be confirmed</span>
+</div>
+<span class="font-label-md text-label-md text-secondary font-bold">Package name to be confirmed</span>
+</div>
+</div>
+<button class="w-full py-2.5 rounded-lg bg-surface-container-high hover:bg-surface-container-highest text-primary font-title-sm text-title-sm font-semibold transition-colors flex items-center justify-center gap-2 shadow-sm" type="button">
+<span class="material-symbols-outlined text-[19px] text-secondary">add_circle</span>
+<span>To be confirmed</span>
+</button>
+</div>
+</div>
+</div>
+</div>
+</div></main></div></body></html>

@@ -1,0 +1,335 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  /* Neutral tokens (RGB channels, used by tailwind.config.ts) - luxury art direction.
+     Light (default): ivory page, white cards. `.theme-noir`: the same tokens
+     on noir, so any subtree can switch palette without component changes. */
+  :root {
+    --c-surface: 255 255 255; /* #FFFFFF cards on light */
+    --c-surface-low: 247 245 240; /* #F7F5F0 warm white page / sections */
+    --c-surface-mid: 241 238 231; /* #F1EEE7 insets */
+    --c-surface-high: 233 229 220; /* #E9E5DC */
+    --c-surface-highest: 214 209 198; /* #D6D1C6 */
+    --c-ink: 18 18 20; /* #121214 headings */
+    --c-ink-soft: 74 74 80; /* #4A4A50 body */
+    --c-ink-muted: 110 110 117; /* #6E6E75 muted (4.6:1 on #F7F5F0) */
+    --c-line: 233 229 220; /* #E9E5DC hairlines */
+    --c-line-strong: 139 139 147; /* #8B8B93 input borders (>=3:1 on white) */
+    --c-gold: 140 106 46; /* #8C6A2E gold-deep: gold text on light */
+  }
+  .theme-noir {
+    --c-surface: 23 23 26; /* #17171A noir-2 */
+    --c-surface-low: 14 14 16; /* #0E0E10 noir */
+    --c-surface-mid: 32 32 36; /* #202024 noir-3 */
+    --c-surface-high: 46 46 51; /* #2E2E33 */
+    --c-surface-highest: 62 62 68;
+    --c-ink: 244 242 238; /* #F4F2EE headings on dark */
+    --c-ink-soft: 185 182 175; /* #B9B6AF body on dark */
+    --c-ink-muted: 142 139 133; /* #8E8B85 muted on dark (5.3:1 on noir-2) */
+    --c-line: 46 46 51; /* hairline on dark */
+    --c-line-strong: 118 116 112; /* input borders on noir-3 (>=3:1) */
+    --c-gold: 194 163 107; /* #C2A36B champagne */
+    color: rgb(var(--c-ink-soft));
+  }
+
+  /* Sabor con Amor design system (DESIGN.md: "Heritage Modernism"): ivory
+     surfaces, emerald-tinted ink, sage hairlines, antique-gold text, Playfair
+     Display headings over Plus Jakarta Sans. Set on the customer area
+     (auth + /account) layouts; the same tokens, so shared components adapt. */
+  .theme-sabor {
+    --c-surface: 255 255 255; /* #FFFFFF cards */
+    --c-surface-low: 250 248 245; /* #FAF8F5 base canvas */
+    --c-surface-mid: 245 241 234; /* #F5F1EA elevated card canvas */
+    --c-surface-high: 235 229 218; /* #EBE5DA muted container */
+    --c-surface-highest: 228 226 223; /* #E4E2DF */
+    --c-ink: 26 33 30; /* #1A211E main ink */
+    --c-ink-soft: 45 55 50; /* #2D3732 secondary */
+    --c-ink-muted: 92 102 97; /* #5C6661 captions (5.6:1 on #FAF8F5) */
+    --c-line: 226 232 228; /* #E2E8E4 hairline */
+    --c-line-strong: 114 121 117; /* #727975 input outline (>=3:1 on white) */
+    --c-gold: 119 90 25; /* #775A19 gold text (6.1:1 on #FAF8F5) */
+    --font-display: var(--font-playfair);
+    color: rgb(var(--c-ink-soft));
+  }
+  .theme-sabor :focus-visible {
+    outline-color: #775a19;
+  }
+  /* Attribute selector (not .bg-imperial) so Tailwind doesn't fold this rule
+     into the utility, which `@apply bg-imperial` below would make circular. */
+  .theme-sabor [class~="bg-imperial"] :focus-visible,
+  .theme-sabor [class~="bg-imperial"]:focus-visible {
+    outline-color: #dfbd78;
+  }
+
+  html {
+    scroll-padding-top: 5.5rem;
+    scroll-behavior: smooth;
+    -webkit-text-size-adjust: 100%;
+  }
+
+  body {
+    background-color: #f7f5f0;
+    color: #121214;
+    text-rendering: optimizeLegibility;
+  }
+
+  ::selection {
+    background-color: #c2a36b;
+    color: #0e0e10;
+  }
+
+  /* Gold focus ring, 2px + offset: champagne #C2A36B on noir, gold-deep
+     #8C6A2E on light surfaces (champagne is too faint on white). */
+  :focus-visible {
+    outline: 2px solid #8c6a2e;
+    outline-offset: 3px;
+    border-radius: 4px;
+  }
+  [class*="bg-noir"] :focus-visible,
+  [class*="bg-band"] :focus-visible,
+  .theme-noir :focus-visible,
+  [class*="bg-noir"]:focus-visible {
+    outline-color: #c2a36b;
+  }
+
+  /* Admin area: a working tool, so slightly larger text and stronger contrast
+     than the public site (darker greys, firmer hairlines). One scope, set on
+     the admin layout. */
+  .admin-ui {
+    --c-ink-soft: 52 52 58; /* #34343A body (11.4:1 on #F7F5F0) */
+    --c-ink-muted: 82 82 90; /* #52525A muted (7.1:1) */
+    --c-line: 222 216 204; /* #DED8CC hairlines */
+    --c-gold: 120 90 36; /* #785A24 gold text (5.9:1) */
+    font-size: 1rem;
+  }
+  .admin-ui .text-xs {
+    font-size: 0.875rem; /* 14px */
+    line-height: 1.375rem;
+  }
+  .admin-ui .text-sm {
+    font-size: 1rem; /* 16px */
+    line-height: 1.625rem;
+  }
+  .admin-ui .text-eyebrow,
+  .admin-ui .text-label {
+    font-size: 0.8125rem;
+  }
+
+  /* Display serif: lining figures everywhere, so numbers (KPIs, money, dates) read clearly. */
+  .font-display {
+    font-variant-numeric: lining-nums;
+  }
+
+  [lang="ur"] {
+    font-family: "Noto Nastaliq Urdu", "Jameel Noori Nastaleeq", "Urdu Typesetting", serif;
+    line-height: 1.9;
+  }
+}
+
+@layer components {
+  .container-px {
+    @apply px-5 sm:px-8 lg:px-12 xl:px-16;
+  }
+
+  .eyebrow {
+    @apply inline-flex items-center gap-4 text-eyebrow font-medium uppercase text-gold;
+  }
+  .eyebrow::before {
+    content: "";
+    @apply h-px w-10 bg-current opacity-50;
+  }
+  .eyebrow-light {
+    @apply text-gold-light;
+  }
+
+  /* Buttons: 6 px corners, uppercase letter-spaced labels, generous padding. */
+  .btn {
+    @apply inline-flex min-h-[48px] items-center justify-center gap-2.5 rounded-md px-7 text-center text-label font-semibold uppercase transition-[background-color,color,border-color,box-shadow] duration-300 ease-elegant disabled:opacity-60;
+  }
+  /* Primary on light: solid noir, warm-white text. */
+  .btn-primary {
+    @apply bg-noir text-[#f4f2ee] hover:bg-noir-600 disabled:bg-surface-high disabled:text-ink-soft disabled:opacity-100;
+  }
+  /* Primary on dark (one per view): champagne with noir text. */
+  .btn-accent,
+  .theme-noir .btn-primary {
+    @apply bg-gold-light text-noir hover:bg-gold-soft disabled:bg-surface-high disabled:text-ink-soft disabled:opacity-100;
+  }
+  /* Secondary on light: 1px outline, transparent. */
+  .btn-outline {
+    @apply border border-ink/25 bg-transparent text-ink hover:border-ink hover:bg-ink/[0.03];
+  }
+  /* Secondary on dark: 1px hairline outline, transparent. */
+  .btn-outline-light,
+  .theme-noir .btn-outline {
+    @apply border border-white/30 bg-transparent text-white hover:border-gold-light hover:text-gold-soft;
+  }
+  /* Quiet text link with a thin rule - replaces repeated buttons. */
+  .link-quiet {
+    @apply inline-flex min-h-[44px] items-center gap-2 text-label font-semibold uppercase text-gold underline decoration-gold/40 decoration-1 underline-offset-[6px] transition-colors hover:decoration-gold;
+  }
+
+  /* One cinematic grade for every venue photo / film: slightly desaturated,
+     a touch warmer and calmer, with a soft vignette. Put .media-grade on the
+     wrapper; the img / video inside gets the filter. */
+  .media-grade {
+    @apply relative isolate overflow-hidden;
+  }
+  .media-grade img,
+  .media-grade video {
+    filter: saturate(0.72) contrast(1.04) brightness(0.92) sepia(0.08);
+  }
+  .media-grade::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    background: radial-gradient(120% 90% at 50% 45%, transparent 55%, rgba(14, 14, 16, 0.38) 100%);
+  }
+  /* Noir areas: inputs on noir-3, and the few light-only colours of shared
+     components re-mapped so messages stay readable (>=4.5:1 on #151517). */
+  .theme-noir input:not([type="checkbox"]):not([type="radio"]),
+  .theme-noir select,
+  .theme-noir textarea {
+    background-color: #1e1e21;
+    color: #ffffff;
+  }
+  .theme-noir [class*="bg-gold-pale"] {
+    background-color: rgb(212 175 55 / 0.1);
+  }
+  .theme-noir .text-red-700 {
+    color: #f87171;
+  }
+
+  /* Sabor con Amor buttons and chips (customer area). Title-case labels,
+     6 px corners, Imperial Emerald primary; tabular figures for numbers. */
+  .theme-sabor .btn {
+    @apply rounded-md text-sm normal-case tracking-normal;
+  }
+  .theme-sabor .btn-primary {
+    @apply bg-imperial text-white hover:bg-imperial-soft disabled:bg-surface-high disabled:text-ink-soft;
+  }
+  .theme-sabor .btn-outline {
+    @apply border-line-strong/60 text-imperial hover:border-imperial hover:bg-imperial/[0.03];
+  }
+  .theme-sabor .link-quiet {
+    @apply text-sm normal-case tracking-normal;
+  }
+  .theme-sabor .eyebrow::before {
+    content: none;
+  }
+  .chip {
+    @apply inline-flex items-center gap-2 rounded-full border border-brass/30 bg-brass-pale px-3 py-1 text-[0.6875rem] font-semibold uppercase tracking-[0.08em] text-brass-text;
+  }
+  .chip-dark {
+    @apply border-brass-light/30 bg-white/5 text-brass-light;
+  }
+  .tnum {
+    font-feature-settings: "tnum" 1, "cv05" 1;
+  }
+
+  /* Quiet outlined button (danger / third-party actions set their own text colour). */
+  .btn-ghost {
+    @apply border border-line-strong bg-surface text-ink hover:bg-surface-low;
+  }
+
+  /* Calm luxury spacing for page sections. */
+  .section-y {
+    @apply py-20 sm:py-24 lg:py-36;
+  }
+  /* WhatsApp: brand green with dark-green text (7.5:1). Visual only. */
+  .btn-whatsapp {
+    @apply bg-whatsapp text-whatsapp-ink shadow-soft hover:bg-whatsapp-hover;
+  }
+  .btn-sm {
+    @apply min-h-[44px] px-5 text-label;
+  }
+
+  .link-underline {
+    @apply bg-[linear-gradient(currentColor,currentColor)] bg-[length:0%_1px] bg-left-bottom bg-no-repeat pb-0.5 transition-[background-size] duration-400 ease-elegant hover:bg-[length:100%_1px];
+  }
+
+  .hairline {
+    @apply h-px w-full bg-gradient-to-r from-transparent via-line-strong/60 to-transparent;
+  }
+
+  .no-scrollbar {
+    scrollbar-width: none;
+  }
+  .no-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
+}
+
+/* ---------------------------------------------------------------------------
+   Motion system. Elements opt in with data attributes; one small client
+   component (MotionEffects) toggles classes / CSS variables. Without JS, or
+   with reduced motion, everything renders in its final state.
+   ------------------------------------------------------------------------ */
+html.js [data-reveal] {
+  opacity: 0;
+  transform: translate3d(0, 28px, 0);
+  transition:
+    opacity 0.9s cubic-bezier(0.16, 1, 0.3, 1),
+    transform 1.1s cubic-bezier(0.16, 1, 0.3, 1);
+  transition-delay: var(--reveal-delay, 0ms);
+}
+html.js [data-reveal="depth"] {
+  transform: perspective(1200px) translate3d(0, 40px, -60px) rotateX(6deg);
+  transform-origin: 50% 100%;
+}
+html.js [data-reveal].is-visible {
+  opacity: 1;
+  transform: none;
+}
+/* Failsafe: if the motion script never starts, reveal content anyway. */
+@keyframes reveal-failsafe {
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+html.js:not(.motion-ready) [data-reveal] {
+  animation: reveal-failsafe 0.6s ease-out 2.5s forwards;
+}
+
+[data-parallax] {
+  transform: translate3d(0, var(--parallax-y, 0px), 0);
+  will-change: transform;
+}
+
+[data-tilt] {
+  transform: perspective(1000px) rotateX(var(--tilt-x, 0deg)) rotateY(var(--tilt-y, 0deg));
+  transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+  transform-style: preserve-3d;
+}
+[data-tilt].is-tilting {
+  transition-duration: 0.12s;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    animation-delay: 0ms !important;
+    transition-duration: 0.01ms !important;
+    transition-delay: 0ms !important;
+    scroll-behavior: auto !important;
+  }
+  html.js [data-reveal],
+  html.js [data-reveal="depth"] {
+    opacity: 1;
+    transform: none;
+  }
+  [data-parallax],
+  [data-tilt] {
+    transform: none !important;
+  }
+}

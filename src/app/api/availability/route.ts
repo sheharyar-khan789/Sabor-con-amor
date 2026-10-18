@@ -1,0 +1,53 @@
+// Public slot availability: GET /api/availability?hall=main-hall&from=YYYY-MM-DD&to=YYYY-MM-DD
+// Returns only free / held / booked per slot, never booking or customer details.
+import { NextResponse, type NextRequest } from "next/server";
+import { DEFAULT_HALL_ID } from "@/lib/booking/catalog";
+import { getAvailability } from "@/lib/booking/engine";
+import { bookingStore, logBookingError, withTimeout } from "@/lib/booking/server";
+import { loadPublicConfig } from "@/lib/config/config-server";
+import { clientIp, limitResponse } from "@/lib/security/limits";
+
+function json(body: unknown, status = 200) {
+  return NextResponse.json(body, { status, headers: { "Cache-Control": "no-store" } });
+}
+
+export async function GET(request: NextRequest) {
+  // Public and unauthenticated: 120 look-ups per IP per minute (per server
+  // instance) caps Firestore read cost from scripted calls. Generous because
+  // mobile carriers share one IP between many customers.
+  const limited = limitResponse(request, "availability_ip", clientIp(request), 120, 60_000, {
+    message: "Too many availability checks. Please wait a minute and try again.",
+  });
+  if (limited) return limited;
+  const params = request.nextUrl.searchParams;
+  const store = bookingStore();
+  if (!store) return json({ error: "booking_unavailable" }, 503);
+
+  const cfg = await loadPublicConfig();
+  if (!cfg.ok) return json({ error: "booking_unavailable" }, 503);
+
+  try {
+    const result = await withTimeout(
+      getAvailability(store, params.get("hall") ?? DEFAULT_HALL_ID, params.get("from") ?? "", params.get("to") ?? "", {
+        config: cfg.config,
+      }),
+      10_000
+    );
+    if (!result.ok) return json({ error: result.code }, 400);
+    // Customers only learn whether a slot can be requested: a slot held by
+    // someone else's pending request is shown as booked, like a confirmed one.
+    const { hallId, today, days } = result.availability;
+    return json({
+      hallId,
+      today,
+      days: days.map((d) => ({
+        date: d.date,
+        status: d.status,
+        slots: d.slots.map((s) => ({ slotId: s.slotId, state: s.state === "held" ? "booked" : s.state })),
+      })),
+    });
+  } catch (error) {
+    logBookingError("availability", error);
+    return json({ error: "booking_unavailable" }, 503);
+  }
+}

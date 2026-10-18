@@ -1,0 +1,18 @@
+# Dependabot: weekly version updates and (with "Dependabot security updates"
+# switched on in the repository settings) automatic security-fix pull requests.
+version: 2
+updates:
+  - package-ecosystem: npm
+    directory: /
+    schedule:
+      interval: weekly
+    open-pull-requests-limit: 5
+    groups:
+      firebase:
+        patterns: ["firebase", "firebase-admin", "@firebase/*"]
+      next:
+        patterns: ["next", "eslint-config-next", "@next/*"]
+  - package-ecosystem: github-actions
+    directory: /
+    schedule:
+      interval: weekly
